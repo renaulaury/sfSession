@@ -1,0 +1,36 @@
+.blocIntern {
+    display: flex;
+    gap: 15px;
+}
+
+.listIntern {
+    width: 30%;
+    background-color: var(--backSection);
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.infosIntern {
+    width: 80%;
+    background-color: var(--backSection);
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.addIntern, .modifIntern {
+    background-color: var(--backSection);
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.listTrainer, .addTrainer, .modifTrainer {
+    background-color: var(--backSection);
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.listCat, .addCat, .modifCat {
+    background-color: var(--backSection);
+    padding: 1%;
+    border-radius: 10px;
+}

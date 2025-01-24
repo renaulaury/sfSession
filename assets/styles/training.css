@@ -1,0 +1,5 @@
+.listTraining, .addTraining, .modifTraining {
+    background-color: var(--backSection);
+    padding: 1%;
+    border-radius: 10px;
+}

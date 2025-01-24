@@ -4,4 +4,28 @@
 
 {% block body %}
 
+
+<section>
+    <div class="titre">
+        <h3 >Sessions en cours</h3>
+        <a href="{{ path('app_addSession') }}"><i class="fa-solid fa-plus"></i></a>
+    </div>
+
+    <div class="listSession"> 
+        <p class="thSession">Sessions</p>
+        <p class="thSession">Début</p>
+        <p class="thSession">Fin</p>
+        <p class="thSession">Formateur</p>        
+        <p class="thSession"></p>
+        <p class="thSession"></p>
+        
+
+        <a href="{{ path('app_editSession') }}"><i class="fa-solid fa-pencil"></i></a>
+        <a href="{{ path('app_deleteSession') }}"><i class="fa-solid fa-trash"></i></a>
+    </div>
+
+    
+</section>
+
+
 {% endblock %}

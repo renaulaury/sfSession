@@ -1,0 +1,21 @@
+.lienHome {
+    list-style: none;
+    text-decoration: none;
+    color: var(--ftColor);
+    /* color:white; */
+}
+
+.backHome {
+    width: 90%;
+    background-color: var(--backSection);
+    padding: 2%;
+    margin:  2% 0;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+

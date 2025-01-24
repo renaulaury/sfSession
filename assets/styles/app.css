@@ -1,3 +1,12 @@
+/*Variables*/
+:root{ 
+    --backColor: linear-gradient(to bottom right, #5D388D 49%, #273EB4 100%);
+    --icons: #5D388D;
+    --backButton: #5D388D;
+    --backSection: #e8dafc;
+    --ftColor: #5D388D;
+}
+
 * {
     margin:0;
     padding:0;
@@ -6,7 +15,7 @@
 
 body {        
     height: 100vh;
-    background: linear-gradient(to bottom right, #5D388D 49%, #273EB4 100%);
+    background: var(--backColor);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,12 +27,56 @@ h1 {
 }
 
 .icon {
-    color:#5D388D;
+    color:var(--icons);
 }
 
 /* Général sécurity */
 .infosPwd {
     font-size: 0.7em;
+}
+
+/* Navbar */
+#navbar {
+    position:fixed; 
+    top:0;
+    width: 100%;
+    background-color: var(--backSection);
+    padding: 1% 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--ftColor);
+}
+
+nav ol {
+    width: 40%;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px 35px;
+    flex-wrap: wrap;
+}
+
+nav li {
+    text-align: center;
+    
+}
+
+a {
+    list-style: none;
+    text-decoration: none;
+    color: var(--ftColor);
+}
+
+#welcome {
+    width:25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 15px;
 }
 
 
@@ -32,7 +85,7 @@ h1 {
     width:100%;
     padding: 2%;
     border-radius: 10px;
-    background-color: #5D388D;
+    background-color: var(--backButton);
     margin-top: 5%;
 }
 
@@ -41,4 +94,26 @@ h1 {
     width: 100%;
     padding: 2%;
     margin-top: 5%;
+}
+
+/* Bloc titres */
+
+section {
+    width: 90%;
+    padding-bottom: 3%;
+}
+
+.titre {
+    background-color: var(--backSection);
+    color: var(--ftColor);
+    width: 100%;
+    border-radius: 10px;
+    padding: 1% 3% 1% 1%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa-solid {
+    line-height: 1.5;
 }

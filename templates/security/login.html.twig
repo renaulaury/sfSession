@@ -3,6 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -18,11 +19,11 @@
             <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
             {# <label for="username">Email</label> #}
             <p>
-                <input class="inputLarge" type="email" value="{{ last_username }}" name="_username" id="username" placeholder="Votre email" class="form-control" autocomplete="email" required autofocus>
+                <input class="inputLarge form-control" type="email" value="{{ last_username }}" name="_username" id="username" placeholder="Votre email" autocomplete="email" required autofocus>
             </p>
             {# <label for="password">Password</label> #}
             <p>
-                <input class="inputLarge" type="password" name="_password" id="password" placeholder="Mot de passe" class="form-control" autocomplete="current-password" required>
+                <input class="inputLarge form-control" type="password" name="_password" id="password" placeholder="Mot de passe"autocomplete="current-password" required>
                 {# <p class="iconEye"><i class="icon fa-solid fa-eye-slash"></i></p> #}
                 <p class="infosPwd">Votre mot de passe doit contenir 12 caractères dont 1 majuscule, 1 chiffre et 1 caractère spécial</p>
             </p>
@@ -30,6 +31,7 @@
             <input type="hidden" name="_csrf_token"
                 value="{{ csrf_token('authenticate') }}"
             >
+
             <button class="btn btn-lg btn-primary submit" type="submit">
                         Connexion
                     </button>

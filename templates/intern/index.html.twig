@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InternController!{% endblock %}
+
+{% block body %}
+
+<section>
+    <div class="titre">
+        <h3 >Liste des stagiaires </h3>
+        <a href="{{ path('app_addIntern') }}"><i class="fa-solid fa-plus"></i></a>
+    </div>
+
+    <div class="blocIntern">
+        <div class="listIntern">
+            {# {% for interns in intern %} #}
+            {# {% intern %} #}
+
+            <a href="{{ path('app_editIntern') }}"><i class="fa-solid fa-pencil"></i></a>
+        </div>
+
+        <div class="infosIntern">Infos du stagiaire
+            <a href="{{ path('app_deleteIntern') }}"><i class="fa-solid fa-trash"></i></a>
+        </div>
+
+    </div>
+</section>
+
+
+{% endblock %}

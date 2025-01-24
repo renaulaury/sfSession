@@ -15,4 +15,28 @@ final class TrainerController extends AbstractController
             'controller_name' => 'TrainerController',
         ]);
     }
+
+    #[Route('/trainer/addTrainer', name: 'app_addTrainer')]
+    public function addTrainer(): Response
+    {
+        return $this->render('trainer/addTrainer.html.twig', [
+           
+        ]);
+    }
+
+    #[Route('/trainer/editTrainer', name: 'app_editTrainer')]
+    public function editTrainer(): Response
+    {
+        return $this->render('trainer/editTrainer.html.twig', [
+           
+        ]);
+    }
+
+    #[Route('/trainer/deleteTrainer', name: 'app_deleteTrainer')]
+    public function deleteTrainer(): Response
+    {
+        return $this->render('trainer/deleteTrainer.html.twig', [
+           
+        ]);
+    }
 }

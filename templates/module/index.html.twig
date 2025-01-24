@@ -4,4 +4,19 @@
 
 {% block body %}
 
+<section>
+    <div class="titre">
+        <h3 >Liste des modules</h3>    
+        <a href="{{ path('app_addModule') }}"><i class="fa-solid fa-plus"></i></a>    
+    </div>
+
+    <div class="listModule"> 
+
+        <a href="{{ path('app_editModule') }}"><i class="fa-solid fa-pencil"></i></a>
+        <a href="{{ path('app_deleteModule') }}"><i class="fa-solid fa-trash"></i></a>
+    </div>
+</section>
+
+
+
 {% endblock %}

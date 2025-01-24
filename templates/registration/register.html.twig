@@ -4,16 +4,22 @@
 
 {% block body %}
 
-<section class="register">
-    <h1>S'enregistrer</h1>
+
 
     {{ form_errors(registrationForm) }}
-
+   
     {{ form_start(registrationForm) }}
+
+
+    <section class="register">
+        <h1 class="h3 mb-3 font-weight-normal">S'enregistrer</h1>
+
         {{ form_row(registrationForm.email) }}
+        
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Mot de passe'
         }) }}
+        <p class="infosPwd">Votre mot de passe doit contenir 12 caractères dont 1 majuscule, 1 chiffre et 1 caractère spécial</p>
 
         {{ form_row(registrationForm.agreeTerms) }}
 

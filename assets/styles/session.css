@@ -1,0 +1,14 @@
+.listSession, .addSession, .modifSession {
+    background-color: var(--backSection);
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.listSession {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.thSession {
+    color: var(--ftColor);
+}

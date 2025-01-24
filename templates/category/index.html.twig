@@ -4,4 +4,18 @@
 
 {% block body %}
 
+<section>
+    <div class="titre">
+        <h3 >Liste des catégories</h3>
+        <a href="{{ path('app_addCat') }}"><i class="fa-solid fa-plus"></i></a>
+    </div>
+
+    <div class="listCat"> 
+        <a href="{{ path('app_editCat') }}"><i class="fa-solid fa-pencil"></i></a>
+        <a href="{{ path('app_deleteCat') }}"><i class="fa-solid fa-trash"></i></a>
+    </div>
+</section>
+
+
+
 {% endblock %}

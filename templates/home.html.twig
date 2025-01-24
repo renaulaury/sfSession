@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ! {% endblock %}
+
+{% block body %}
+
+
+<p class="backHome"><a class="lienHome" href="{{ path('app_session') }}">Sessions</a></p>
+<p class="backHome"><a class="lienHome" href="{{ path('app_training') }}">Formations</a></p>
+<p class="backHome"><a class="lienHome" href="{{ path('app_module') }}">Modules</a></p>
+<p class="backHome"><a class="lienHome" href="{{ path('app_category') }}">Catégories</a></p>
+<p class="backHome"><a class="lienHome" href="{{ path('app_trainer') }}">Formateurs</a></p>
+<p class="backHome"><a class="lienHome" href="{{ path('app_intern') }}">Stagiaires</a></p>
+
+{% endblock %}

@@ -12,7 +12,27 @@ final class SessionController extends AbstractController
     public function index(): Response
     {
         return $this->render('session/index.html.twig', [
-            'controller_name' => 'SessionController',
+        ]);
+    }
+
+    #[Route('/session/addSession', name: 'app_addSession')]
+    public function addSession(): Response
+    {
+        return $this->render('session/addSession.html.twig', [
+        ]);
+    }
+
+    #[Route('/session/editSession', name: 'app_editSession')]
+    public function editSession(): Response
+    {
+        return $this->render('session/editSession.html.twig', [
+        ]);
+    }
+
+    #[Route('/session/deleteSession', name: 'app_deleteSession')]
+    public function deleteSession(): Response
+    {
+        return $this->render('session/deleteSession.html.twig', [
         ]);
     }
 }

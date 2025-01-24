@@ -15,4 +15,25 @@ final class CategoryController extends AbstractController
             'controller_name' => 'CategoryController',
         ]);
     }
+
+    #[Route('/category/addCat', name: 'app_addCat')]
+    public function addCat(): Response
+    {
+        return $this->render('category/addCat.html.twig', [
+        ]);
+    }
+
+    #[Route('/category/editCat', name: 'app_editCat')]
+    public function editCat(): Response
+    {
+        return $this->render('category/editCat.html.twig', [
+        ]);
+    }
+
+    #[Route('/category/deleteCat', name: 'app_deleteCat')]
+    public function deleteCat(): Response
+    {
+        return $this->render('category/deleteCat.html.twig', [
+        ]);
+    }
 }

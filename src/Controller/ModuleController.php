@@ -15,4 +15,25 @@ final class ModuleController extends AbstractController
             'controller_name' => 'ModuleController',
         ]);
     }
+
+    #[Route('/module/addModule', name: 'app_addModule')]
+    public function addModule(): Response
+    {
+        return $this->render('module/addModule.html.twig', [           
+        ]);
+    }
+
+    #[Route('/module/editModule', name: 'app_editModule')]
+    public function editModule(): Response
+    {
+        return $this->render('module/editModule.html.twig', [
+        ]);
+    }
+
+    #[Route('/module/deleteModule', name: 'app_deleteModule')]
+    public function deleteModule(): Response
+    {
+        return $this->render('module/deleteModule.html.twig', [
+        ]);
+    }
 }

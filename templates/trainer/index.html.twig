@@ -4,4 +4,19 @@
 
 {% block body %}
 
+<section>
+    <div class="titre">
+        <h3 >Liste des formateurs</h3>
+        <a href="{{ path('app_addTrainer') }}"><i class="fa-solid fa-plus"></i></a>
+    </div>
+
+    <div class="listTrainer"> 
+        <a href="{{ path('app_editTrainer') }}"><i class="fa-solid fa-pencil"></i></a>
+        <a href="{{ path('app_deleteTrainer') }}"><i class="fa-solid fa-trash"></i></a>
+   
+    </div>
+</section>
+
+
+
 {% endblock %}

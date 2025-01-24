@@ -7,7 +7,7 @@
 
 .login {
     width: 100%;
-    background-color: #e8dafc;
+    background-color: var(--backSection);
     border-radius: 10px;
     padding: 5%;
 }
@@ -16,9 +16,25 @@
 /* Register */
 .register {
     width: 100%;
-    background-color: #e8dafc;
+    background-color:var(--backSection);
     border-radius: 10px;
     padding: 5%;
 }
+
+input {
+    width: 100%;
+    padding: 2%;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.agreeTerms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 
 

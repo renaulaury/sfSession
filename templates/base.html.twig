@@ -14,7 +14,28 @@
             {% endblock %}
         {% endblock %}
     </head>
+
     <body>
+        {# {% if app.user %} #}
+            <nav id="navbar">
+                <div id="welcome">
+                    <p>Bienvenue <a href="{{ path('app_profile') }}">toi !</a></p>
+                    <p><a href="{{ path('app_login') }}">Se déconnecter</a></p>
+                </div> 
+
+                <ol>
+                    <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_session') }}">Sessions</a></li>
+                    <li><a href="{{ path('app_training') }}">Formations</a></li>
+                    <li><a href="{{ path('app_module') }}">Modules</a></li>
+                    <li><a href="{{ path('app_category') }}">Catégories</a></li>
+                    <li><a href="{{ path('app_trainer') }}">Formateurs</a></li>
+                    <li><a href="{{ path('app_intern') }}">Stagiaires</a></li>
+                </ol>
+            </nav>
+        {# {% endif %} #}
+
+
         {% block body %}{% endblock %}
     </body>
 </html>
