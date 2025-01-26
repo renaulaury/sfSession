@@ -89,6 +89,12 @@ class Intern
         return $this;
     }
 
+    public function getDateBirthFr()
+    {
+        return $this->dateBirth->format('d-m-y');
+         
+    }
+
     public function getSex(): ?string
     {
         return $this->sex;
@@ -163,4 +169,10 @@ class Intern
 
         return $this;
     }
+
+    // public function __toString()
+    // {
+    //     return 
+    //     $this->nameIntern. " ".$this->firstname;
+    // }
 }

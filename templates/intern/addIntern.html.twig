@@ -11,7 +11,20 @@
         <a href="{{ path('app_intern') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
-    <div class="addIntern"> </div>
+    <div class="addIntern"> 
+        {{ form_start(formIntern)}}
+
+        <div>
+            {{ form_row(formIntern.nameIntern) }}
+            {{ form_row(formIntern.firstname) }}
+        </div>
+
+
+
+       {{ form_end(formIntern)}}
+
+
+    </div>
 </section>
 
 
