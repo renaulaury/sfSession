@@ -11,24 +11,19 @@
     </div>
 
     <div class="blocIntern">
-        <div class="listIntern">
-            {# for inversé ds symfony #}
-             {% for intern in interns %} 
-                <a href=" {{ path('app_profilIntern', {'id':intern.id}) }}">
-                    {{ intern.nameIntern }}
-                    {{ intern.firstname }}
-                </a>
-
-                {{ intern.dateBirthFr }}
-            {% endfor %}
-
+       
 
             <a href="{{ path('app_editIntern') }}"><i class="fa-solid fa-pencil"></i></a>
         </div>
 
         <div class="infosIntern">Infos du stagiaire
             <a href="{{ path('app_deleteIntern') }}"><i class="fa-solid fa-trash"></i></a>
-        </div>
+            
+            {{ intern.nameIntern}}
+            {{ intern.firstname}}
+            {{ intern.dateBirthFr}}
+            {{ intern.city}}
+            {{ intern.email}}
 
     </div>
 </section>

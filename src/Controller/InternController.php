@@ -23,6 +23,17 @@ final class InternController extends AbstractController
         ]);
     }
 
+    #[Route('/intern/profilIntern/{id}', name: 'app_profilIntern')]
+
+    public function profilIntern(Intern $intern): Response
+    {
+        return $this->render('intern/profilIntern.html.twig', [
+            'intern' => $intern,
+        ]);
+    }
+
+
+
     #[Route('/intern/addIntern', name: 'app_addIntern')]
 
 
