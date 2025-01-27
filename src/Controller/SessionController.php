@@ -53,12 +53,12 @@ final class SessionController extends AbstractController
 
     //Affiche le détail de la session
     #[Route('/session/detailSession/{id}', name: 'app_detailSession')]
-    public function detailSession(Session $sessions, ProgramRepository $programRepo): Response
+    public function detailSession(Session $session, ProgramRepository $programRepo): Response
     {    
         $programs = $programRepo->findAll();
 
         return $this->render('session/detailSession.html.twig', [
-            'sessions' => $sessions,
+            'session' => $session,
             'programs' => $programs
         ]);
     }

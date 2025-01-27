@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfsessionlily.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table sfsessionlily.doctrine_migration_versions : ~0 rows (environ)
 REPLACE INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250120130936', '2025-01-20 13:10:08', 589);
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `module` (
   PRIMARY KEY (`id`),
   KEY `IDX_C24262812469DE2` (`category_id`),
   CONSTRAINT `FK_C24262812469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfsessionlily.module : ~8 rows (environ)
 REPLACE INTO `module` (`id`, `category_id`, `libelle_module`) VALUES
@@ -98,7 +98,8 @@ REPLACE INTO `module` (`id`, `category_id`, `libelle_module`) VALUES
 	(5, 2, 'PHP'),
 	(6, 2, 'HTML'),
 	(7, 2, 'CSS'),
-	(8, 2, 'Figma');
+	(8, 2, 'Figma'),
+	(9, 2, 'JS');
 
 -- Listage de la structure de table sfsessionlily. program
 CREATE TABLE IF NOT EXISTS `program` (
@@ -111,11 +112,14 @@ CREATE TABLE IF NOT EXISTS `program` (
   KEY `IDX_92ED7784AFC2B591` (`module_id`),
   CONSTRAINT `FK_92ED7784613FECDF` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`),
   CONSTRAINT `FK_92ED7784AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.program : ~1 rows (environ)
+-- Listage des données de la table sfsessionlily.program : ~4 rows (environ)
 REPLACE INTO `program` (`id`, `session_id`, `module_id`, `nb_day`) VALUES
-	(1, 1, 5, 10);
+	(1, 1, 5, 10),
+	(2, 3, 3, 5),
+	(3, 2, 1, 5),
+	(4, 1, 5, 5);
 
 -- Listage de la structure de table sfsessionlily. session
 CREATE TABLE IF NOT EXISTS `session` (
@@ -150,8 +154,11 @@ CREATE TABLE IF NOT EXISTS `session_intern` (
   CONSTRAINT `FK_CA12556F613FECDF` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.session_intern : ~2 rows (environ)
+-- Listage des données de la table sfsessionlily.session_intern : ~5 rows (environ)
 REPLACE INTO `session_intern` (`session_id`, `intern_id`) VALUES
+	(1, 1),
+	(1, 3),
+	(2, 2),
 	(3, 1),
 	(3, 2);
 
@@ -178,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `training` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.training : ~4 rows (environ)
+-- Listage des données de la table sfsessionlily.training : ~0 rows (environ)
 REPLACE INTO `training` (`id`, `libelle_training`) VALUES
 	(1, 'Assistant adm'),
 	(2, 'Développeur web'),

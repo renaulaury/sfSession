@@ -170,9 +170,9 @@ class Intern
         return $this;
     }
 
-    // public function __toString()
-    // {
-    //     return 
-    //     $this->nameIntern. " ".$this->firstname;
-    // }
+    public function __toString()
+    {
+        return 
+        $this->nameIntern. " ".$this->firstname;
+    }
 }

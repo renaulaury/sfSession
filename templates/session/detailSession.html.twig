@@ -8,24 +8,26 @@
 <section>
     <div class="titre">
         <div>
-         <h3 >Session : {{ sessions.libelleSession }} du {{ sessions.dateBeginFr }} au {{ sessions.dateEndFr }} encadrée par {{ sessions.trainer.nameTrainer }} {{ sessions.trainer.firstname }}</h3>
+         <h3 >Session : {{ session.libelleSession }} du {{ session.dateBeginFr }} au {{ session.dateEndFr }} encadrée par {{ session.trainer.nameTrainer }} {{ session.trainer.firstname }}</h3>
         </div>
         <a href="{{ path('app_session') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
     <div class="blockSession"> 
-        <h3>Formation : {{sessions.training.libelleTraining }}</h3>
+        <h3>Formation : {{session.training.libelleTraining }}</h3>
 
         <h4>Modules</h4>
-         {% for session in sessions %} 
-             {{ session.program.libelleModule }} 
-       {% endfor %} 
+        {# {{ dump(programs) }} #}
+        
+
+        {% for program in session.programs %} 
+             <p>{{ program.module }} </p>
+        {% endfor %} 
 
         
         <h4>Stagiaires</h4>
-
-        {% for session in sessions %}
-            {{ session.nameIntern}}
+        {% for session in session.interns %}
+            <p>{{ session.nameIntern}} {{ session.firstname}}</p>
         {% endfor %}
 
         <div class="listingSession">
