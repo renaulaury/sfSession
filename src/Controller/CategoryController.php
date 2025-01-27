@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Module;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\ModuleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,6 +45,19 @@ final class CategoryController extends AbstractController
 
         return $this->render('category/addCat.html.twig', [
             'formCategory' => $form,
+        ]);
+    }
+
+    //Affiche le détail des catégories
+    #[Route('/category/detailCat/{id}', name: 'app_detailCat')]
+    public function detailCat(Category $category, ModuleRepository $moduleRepo, $id): Response
+    {
+
+        $modules = $moduleRepo->findBy(['category' => $id]);
+
+        return $this->render('category/detailCat.html.twig', [
+            'category' => $category,
+            'modules' => $modules,
         ]);
     }
 

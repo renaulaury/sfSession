@@ -13,10 +13,11 @@
     <div class="listCat"> 
 
         {% for category in categories %}
-            <p> {{ category.libelleCategory }}</p>
-            <a href="{{ path('app_editCat') }}"><i class="fa-solid fa-pencil"></i></a>
-            <a href="{{ path('app_deleteCat') }}"><i class="fa-solid fa-trash"></i></a>
-
+            <div><p> 
+                <a href="{{ path('app_detailCat', {'id':category.id}) }}">{{ category.  libelleCategory }}</a></p>
+                <a href="{{ path('app_editCat') }}"><i class="fa-solid fa-pencil"></i></a>
+                <a href="{{ path('app_deleteCat') }}"><i class="fa-solid fa-trash"></i></a>
+            </div>
         {% endfor %}
         
     </div>
