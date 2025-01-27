@@ -11,9 +11,14 @@
     </div>
 
     <div class="listModule"> 
-
-        <a href="{{ path('app_editModule') }}"><i class="fa-solid fa-pencil"></i></a>
-        <a href="{{ path('app_deleteModule') }}"><i class="fa-solid fa-trash"></i></a>
+        {% for module in modules %}
+            <p>
+                {{ module.libelleModule }}
+                <a href="{{ path('app_editModule') }}"><i class="fa-solid fa-pencil"></i></a>
+                <a href="{{ path('app_deleteModule') }}"><i class="fa-solid fa-trash"></i></a>
+            </p>
+        {% endfor %}
+        
     </div>
 </section>
 
