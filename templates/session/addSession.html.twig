@@ -11,7 +11,30 @@
         <a href="{{ path('app_session') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
-    <div class="addSession"> </div>
+    <div class="addSession"> 
+        {{ form_start(formSession) }}
+            
+            <p>
+                {{ form_row(formSession.libelleSession)}}
+                {{ form_row(formSession.nbPlace)}}
+            </p>
+
+            <p>
+                {{ form_row(formSession.dateBegin)}}
+                {{ form_row(formSession.dateEnd)}}
+            </p>
+
+            <p>
+                {{ form_row(formSession.training)}}
+                {{ form_row(formSession.trainer)}}
+            </p>
+
+            <p>
+                {{ form_row(formSession.interns)}} 
+            </p>
+
+        {{ form_end(formSession) }}
+    </div>
 </section>
 
 

@@ -24,9 +24,12 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `libelle_category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.category : ~0 rows (environ)
+-- Listage des données de la table sfsessionlily.category : ~2 rows (environ)
+REPLACE INTO `category` (`id`, `libelle_category`) VALUES
+	(1, 'Bureautique'),
+	(2, 'Informatique');
 
 -- Listage de la structure de table sfsessionlily. doctrine_migration_versions
 CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
@@ -36,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfsessionlily.doctrine_migration_versions : ~0 rows (environ)
+-- Listage des données de la table sfsessionlily.doctrine_migration_versions : ~1 rows (environ)
 REPLACE INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250120130936', '2025-01-20 13:10:08', 589);
 
@@ -84,9 +87,18 @@ CREATE TABLE IF NOT EXISTS `module` (
   PRIMARY KEY (`id`),
   KEY `IDX_C24262812469DE2` (`category_id`),
   CONSTRAINT `FK_C24262812469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.module : ~0 rows (environ)
+-- Listage des données de la table sfsessionlily.module : ~8 rows (environ)
+REPLACE INTO `module` (`id`, `category_id`, `libelle_module`) VALUES
+	(1, 1, 'Excel'),
+	(2, 1, 'Word'),
+	(3, 1, 'Powerpoint'),
+	(4, 2, 'MCD-MLD'),
+	(5, 2, 'PHP'),
+	(6, 2, 'HTML'),
+	(7, 2, 'CSS'),
+	(8, 2, 'Figma');
 
 -- Listage de la structure de table sfsessionlily. program
 CREATE TABLE IF NOT EXISTS `program` (
@@ -101,7 +113,9 @@ CREATE TABLE IF NOT EXISTS `program` (
   CONSTRAINT `FK_92ED7784AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.program : ~0 rows (environ)
+-- Listage des données de la table sfsessionlily.program : ~1 rows (environ)
+REPLACE INTO `program` (`id`, `session_id`, `module_id`, `nb_day`) VALUES
+	(1, 1, 5, 10);
 
 -- Listage de la structure de table sfsessionlily. session
 CREATE TABLE IF NOT EXISTS `session` (
@@ -110,16 +124,20 @@ CREATE TABLE IF NOT EXISTS `session` (
   `trainer_id` int DEFAULT NULL,
   `libelle_session` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `nb_place` int NOT NULL,
-  `date_begin` datetime NOT NULL,
-  `date_end` datetime NOT NULL,
+  `date_begin` date NOT NULL,
+  `date_end` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_D044D5D4BEFD98D1` (`training_id`),
   KEY `IDX_D044D5D4FB08EDF6` (`trainer_id`),
   CONSTRAINT `FK_D044D5D4BEFD98D1` FOREIGN KEY (`training_id`) REFERENCES `training` (`id`),
   CONSTRAINT `FK_D044D5D4FB08EDF6` FOREIGN KEY (`trainer_id`) REFERENCES `trainer` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.session : ~0 rows (environ)
+-- Listage des données de la table sfsessionlily.session : ~3 rows (environ)
+REPLACE INTO `session` (`id`, `training_id`, `trainer_id`, `libelle_session`, `nb_place`, `date_begin`, `date_end`) VALUES
+	(1, 2, 4, 'Introduction à PHP', 10, '2025-01-27', '2025-01-31'),
+	(2, 1, 3, 'Tableaux croisés dynamiques', 15, '2025-02-01', '2025-01-15'),
+	(3, 1, 2, 'Gestion de powerpoint', 8, '2025-02-03', '2025-02-07');
 
 -- Listage de la structure de table sfsessionlily. session_intern
 CREATE TABLE IF NOT EXISTS `session_intern` (
@@ -132,7 +150,10 @@ CREATE TABLE IF NOT EXISTS `session_intern` (
   CONSTRAINT `FK_CA12556F613FECDF` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.session_intern : ~0 rows (environ)
+-- Listage des données de la table sfsessionlily.session_intern : ~2 rows (environ)
+REPLACE INTO `session_intern` (`session_id`, `intern_id`) VALUES
+	(3, 1),
+	(3, 2);
 
 -- Listage de la structure de table sfsessionlily. trainer
 CREATE TABLE IF NOT EXISTS `trainer` (
@@ -141,18 +162,28 @@ CREATE TABLE IF NOT EXISTS `trainer` (
   `firstname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.trainer : ~0 rows (environ)
+-- Listage des données de la table sfsessionlily.trainer : ~4 rows (environ)
+REPLACE INTO `trainer` (`id`, `name_trainer`, `firstname`, `email`) VALUES
+	(1, 'Bear', 'Teddy', 'tbear@gmail.fr'),
+	(2, 'Qsé', 'Tou', 'tqsé@gmail.fr'),
+	(3, 'Gramme', 'Anna', 'agramme@gmail.fr'),
+	(4, 'Résse', 'Yves', 'yresse@gmail.fr');
 
 -- Listage de la structure de table sfsessionlily. training
 CREATE TABLE IF NOT EXISTS `training` (
   `id` int NOT NULL AUTO_INCREMENT,
   `libelle_training` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.training : ~0 rows (environ)
+-- Listage des données de la table sfsessionlily.training : ~4 rows (environ)
+REPLACE INTO `training` (`id`, `libelle_training`) VALUES
+	(1, 'Assistant adm'),
+	(2, 'Développeur web'),
+	(3, 'Comptable'),
+	(4, 'Assistant dentaire');
 
 -- Listage de la structure de table sfsessionlily. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -165,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfsessionlily.user : ~1 rows (environ)
+-- Listage des données de la table sfsessionlily.user : ~2 rows (environ)
 REPLACE INTO `user` (`id`, `nickname`, `email`, `roles`, `password`) VALUES
 	(3, NULL, 'root@gmail.com', '[]', '$2y$13$nyas23qpFwN5jxR1W1GNf.2ranC.zdWdyxrKdaLv/.CiSRAiJN7MO'),
 	(4, NULL, 'lisou@gmail.com', '[]', '$2y$13$d8LaFUnAGst.zo7Jw.nw6.oTUtUaKZx8JFHTMThTNkwsdGAK7d5pG');

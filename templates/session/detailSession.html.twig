@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SessionController!{% endblock %}
+
+{% block body %}
+
+
+<section>
+    <div class="titre">
+        <div>
+         <h3 >Session : {{ sessions.libelleSession }} du {{ sessions.dateBeginFr }} au {{ sessions.dateEndFr }} encadrée par {{ sessions.trainer.nameTrainer }} {{ sessions.trainer.firstname }}</h3>
+        </div>
+        <a href="{{ path('app_session') }}"><i class="fa-solid fa-rotate-left"></i></a>
+    </div>
+
+    <div class="blockSession"> 
+        <h3>Formation : {{sessions.training.libelleTraining }}</h3>
+
+        <h4>Modules</h4>
+         {% for session in sessions %} 
+             {{ session.program.libelleModule }} 
+       {% endfor %} 
+
+        
+        <h4>Stagiaires</h4>
+
+        {% for session in sessions %}
+            {{ session.nameIntern}}
+        {% endfor %}
+
+        <div class="listingSession">
+           
+        </div>
+        
+    </div>
+
+    
+</section>
+
+
+{% endblock %}
