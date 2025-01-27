@@ -2,13 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Module;
+use App\Form\ModuleType;
 use App\Repository\ModuleRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class ModuleController extends AbstractController
 {
+    //Affiche liste modules
     #[Route('/module', name: 'app_module')]
     public function index(ModuleRepository $moduleRepo): Response
     {
@@ -19,10 +24,23 @@ final class ModuleController extends AbstractController
         ]);
     }
 
+    //Formulaire d'ajout
     #[Route('/module/addModule', name: 'app_addModule')]
-    public function addModule(): Response
+    public function addModule(Request $request, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('module/addModule.html.twig', [           
+        $module = new Module;
+        $form = $this->createForm(ModuleType::class, $module);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $module = $form->getData();
+            $entityManager->persist($module);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_module');
+        }
+
+        return $this->render('module/addModule.html.twig', [   
+            'formModule' => $form,        
         ]);
     }
 

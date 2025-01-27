@@ -11,7 +11,25 @@
         <a href="{{ path('app_module') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
-    <div class="addModule"> </div>
+    <div class="addModule"> 
+        {{ form_start(formModule)}}
+
+        <div>
+            {{ form_row(formModule.libelleModule) }}
+        </div>
+
+        <div>
+            {{ form_row(formModule.category) }}
+        </div>
+
+        {{ form_end(formModule)}}
+
+
+
+        
+
+
+    </div>
 </section>
 
 
