@@ -11,8 +11,14 @@
     </div>
 
     <div class="listCat"> 
-        <a href="{{ path('app_editCat') }}"><i class="fa-solid fa-pencil"></i></a>
-        <a href="{{ path('app_deleteCat') }}"><i class="fa-solid fa-trash"></i></a>
+
+        {% for category in categories %}
+            <p> {{ category.libelleCategory }}</p>
+            <a href="{{ path('app_editCat') }}"><i class="fa-solid fa-pencil"></i></a>
+            <a href="{{ path('app_deleteCat') }}"><i class="fa-solid fa-trash"></i></a>
+
+        {% endfor %}
+        
     </div>
 </section>
 

@@ -11,7 +11,13 @@
         <a href="{{ path('app_category') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
-    <div class="addCat"> </div>
+    <div class="addCat"> 
+        {{ form_start(formCategory)}}
+
+        {{ form_row(formCategory.libelleCategory)}}
+
+        {{ form_end(formCategory)}}
+    </div>
 </section>
 
 
