@@ -11,9 +11,15 @@
     </div>
 
     <div class="listTrainer"> 
-        <a href="{{ path('app_editTrainer') }}"><i class="fa-solid fa-pencil"></i></a>
-        <a href="{{ path('app_deleteTrainer') }}"><i class="fa-solid fa-trash"></i></a>
+
+        {% for trainer in trainers %}
+            <div>
+                <p><a href="{{ path('app_profilTrainer', {'id':trainer.id}) }}">{{ trainer.nameTrainer }} {{ trainer.firstname }}</a></p>
+                <a href="{{ path('app_editTrainer') }}"><i class="fa-solid fa-pencil"></i></a>
+                <a href="{{ path('app_deleteTrainer') }}"><i class="fa-solid fa-trash"></i></a>
+            </div>
    
+        {% endfor %}
     </div>
 </section>
 

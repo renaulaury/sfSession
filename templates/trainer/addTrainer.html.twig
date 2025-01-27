@@ -11,7 +11,16 @@
         <a href="{{ path('app_trainer') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
-    <div class="addTrainer"> </div>
+    <div class="addTrainer"> 
+        {{ form_start(formTrainer)}}
+            {{ form_row(formTrainer.nameTrainer)}}
+            {{ form_row(formTrainer.firstname)}}
+            {{ form_row(formTrainer.email)}}
+
+
+        {{ form_end(formTrainer)}}
+
+    </div>
 </section>
 
 

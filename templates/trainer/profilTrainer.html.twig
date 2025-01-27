@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TrainerController!{% endblock %}
+
+{% block body %}
+
+<section>
+    <div class="titre">
+        <h3 >Profil</h3>
+        <a href="{{ path('app_trainer') }}"><i class="fa-solid fa-rotate-left"></i></a>
+    </div>
+
+    <div class="listTrainer"> 
+        <p>{{ trainer.nameTrainer }} {{ trainer.firstname }}</p>
+        <p>{{ trainer.email }}</p>
+        
+    </div>
+</section>
+
+
+
+{% endblock %}

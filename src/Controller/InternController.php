@@ -33,9 +33,8 @@ final class InternController extends AbstractController
     }
 
 
-
+    //Affiche le formulaire d'ajout
     #[Route('/intern/addIntern', name: 'app_addIntern')]
-
 
     public function addIntern(Request $request, EntityManagerInterface $entityManager): Response
     {
