@@ -93,6 +93,12 @@ class Session
         return $this;
     }
 
+    public function getDateBeginFr()
+    {
+        return $this->dateBegin->format('d-m-y');
+         
+    }
+
     public function getDateEnd(): ?\DateTimeInterface
     {
         return $this->dateEnd;
@@ -103,6 +109,12 @@ class Session
         $this->dateEnd = $dateEnd;
 
         return $this;
+    }
+
+    public function getDateEndFr()
+    {
+        return $this->dateEnd->format('d-m-y');
+         
     }
 
     public function getTraining(): ?Training
