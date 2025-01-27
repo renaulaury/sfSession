@@ -14,9 +14,9 @@
         <div class="listIntern">
             {# for inversé ds symfony #}
              {% for intern in interns %} 
-                <a href=" {{ path('app_profilIntern', {'id':intern.id}) }}">
-                    <p>{{ intern.nameIntern }} {{ intern.firstname }}</p>
-                </a>
+             <p><a href=" {{ path('app_profilIntern', {'id':intern.id}) }}">
+                    {{ intern.nameIntern }} {{ intern.firstname }}
+                </a></p>
                 <a href="{{ path('app_editIntern') }}"><i class="fa-solid fa-pencil"></i></a>
 
                 

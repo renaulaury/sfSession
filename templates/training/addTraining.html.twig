@@ -10,7 +10,15 @@
         <a href="{{ path('app_training') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
-    <div class="addTraining"> </div>
+    <div class="addTraining"> 
+
+        {{ form_start(formTraining)}}
+            
+            {{ form_row(formTraining.libelleTraining)}}
+
+        {{ form_end(formTraining)}}
+
+    </div>
 </section>
 
 
