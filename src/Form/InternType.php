@@ -21,14 +21,25 @@ class InternType extends AbstractType
             ->add('nameIntern', TextType::class, [
                 'label' => 'Nom',
             ]) 
-            ->add('firstname', TextType::class)
+            ->add('firstname', TextType::class, [
+                'label' => 'Prénom',
+            ]) 
             ->add('dateBirth', DateType::class, [
                 'widget' => 'single_text',
+                'label' => 'Date de naissance',
             ])
-            ->add('sex', TextType::class)
-            ->add('city', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('phone', TextType::class)
+            ->add('sex', TextType::class, [
+            'label' => 'Sexe',
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville',
+                ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                ])
+            ->add('phone', TextType::class, [
+                'label' => 'Téléphone',
+                ])
             ->add('Valider', SubmitType::class)
             
             // ->add('sessions', EntityType::class, [

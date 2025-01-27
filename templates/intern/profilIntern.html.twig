@@ -16,14 +16,23 @@
             <a href="{{ path('app_editIntern') }}"><i class="fa-solid fa-pencil"></i></a>
         </div>
 
-        <div class="infosIntern">Infos du stagiaire
+        <div class="infosIntern">
+            <p>{{ intern.nameIntern}} {{ intern.firstname}} </p>
             <a href="{{ path('app_deleteIntern') }}"><i class="fa-solid fa-trash"></i></a>
             
-            {{ intern.nameIntern}}
-            {{ intern.firstname}}
-            {{ intern.dateBirthFr}}
-            {{ intern.city}}
-            {{ intern.email}}
+            <p>Affecté(e) à : {{ intern.city}}</p>
+            <div>
+                <p>Email : {{ intern.email}}</p>
+                <p>Téléphone : {{ intern.phone }}</p>
+            </div>
+
+            <div>
+                <p>Sexe : {{ intern.sex }} </p>
+                <p> Né le : {{ intern.dateBirthFr}}</p>
+            </div>
+            
+            <h3>Sessions prévues :</h3>
+            
 
     </div>
 </section>
