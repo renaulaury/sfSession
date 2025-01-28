@@ -62,19 +62,14 @@ final class TrainerController extends AbstractController
         ]);
     }
 
-    #[Route('/trainer/editTrainer', name: 'app_editTrainer')]
-    public function editTrainer(): Response
-    {
-        return $this->render('trainer/editTrainer.html.twig', [
-           
-        ]);
-    }
-
-    #[Route('/trainer/deleteTrainer', name: 'app_deleteTrainer')]
-    public function deleteTrainer(): Response
-    {
-        return $this->render('trainer/deleteTrainer.html.twig', [
-           
-        ]);
-    }
+    
+     //Suppression     
+     #[Route('/trainer/{id}/deleteTrainer', name: 'app_deleteTrainer')]
+     public function deleteTrainer(Trainer $trainer, EntityManagerInterface $entityManager): Response
+     {
+         $entityManager->remove($trainer);
+         $entityManager->flush();
+ 
+         return $this->redirectToRoute('app_trainer');
+     }
 }

@@ -17,7 +17,7 @@
                 <p>
                     <a href="{{ path('app_profilTrainer', {'id':trainer.id}) }}">{{ trainer.nameTrainer }} {{ trainer.firstname }}</a></p>
                     <a href="{{ path('edit_trainer', {'id':trainer.id}) }}"><i class="fa-solid fa-pencil"></i></a>
-                    <a href="{{ path('app_deleteTrainer') }}"><i class="fa-solid fa-trash"></i></a>
+                    <a href="{{ path('app_deleteTrainer', {'id':trainer.id}) }}"><i class="fa-solid fa-trash"></i></a>
                 </p>
             </div>
    
