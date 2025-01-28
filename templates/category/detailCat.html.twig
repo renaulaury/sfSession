@@ -15,7 +15,7 @@
         
         {% for module in modules %}            
             <p> {{ module.libelleModule }}</p>
-            <a href="{{ path('app_editCat') }}"><i class="fa-solid fa-pencil"></i></a>
+            <a href="{{ path('edit_cat', {'id':category.id}) }}"><i class="fa-solid fa-pencil"></i></a>
             <a href="{{ path('app_deleteCat') }}"><i class="fa-solid fa-trash"></i></a>
 
         {% endfor %}

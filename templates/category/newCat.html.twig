@@ -7,9 +7,15 @@
 
 <section>
     <div class="titre">
-        <h3 >Ajouter une catégorie</h3>
+        {% if edit %}
+            <h3 >Modifier une catégorie </h3>
+        {% else %}
+            <h3 >Ajouter une catégorie </h3>
+        {% endif %}
         <a href="{{ path('app_category') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
+
+
 
     <div class="addCat"> 
         {{ form_start(formCategory)}}

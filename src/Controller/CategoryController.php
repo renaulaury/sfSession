@@ -27,24 +27,29 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-    // Affiche le formulaire d'ajout
-    #[Route('/category/addCat', name: 'app_addCat')]
-    public function addCat(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    // Affiche le formulaire d'ajout et d'édition
+    #[Route('/intern/newCat', name: 'add_cat')]
+    #[Route('/category/{id}/newCat', name: 'edit_cat')]
 
-        $category = new Category;
+    public function addEditCat(Category $category = null, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        if(!$category) {
+            $category = new Category();
+        }
+
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $intern = $form->getData();
-            $entityManager->persist($intern);
+            $category = $form->getData();
+            $entityManager->persist($category);
             $entityManager->flush();
             return $this->redirectToRoute('app_category');
         }
 
-        return $this->render('category/addCat.html.twig', [
+        return $this->render('category/newCat.html.twig', [
             'formCategory' => $form,
+            'edit' => $category->getId(),
         ]);
     }
 
@@ -61,12 +66,6 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/category/editCat', name: 'app_editCat')]
-    public function editCat(): Response
-    {
-        return $this->render('category/editCat.html.twig', [
-        ]);
-    }
 
     #[Route('/category/deleteCat', name: 'app_deleteCat')]
     public function deleteCat(): Response
