@@ -23,17 +23,21 @@
         {% for program in session.programs %} 
              <p>{{ program.module }} </p>
              <p>{{ program.nbDay }} </p>
-              <p>{{ program.module.category }} </p> 
+             <p>{{ program.module.category }} </p> 
 
         {% endfor %} 
 
         
         <h4>Stagiaires</h4>
         {% for session in session.interns %}
-            <p>{{ session.nameIntern}} {{ session.firstname}}</p>
+            <p>
+                <a href="{{ path('app_intern') }}">{{ session.nameIntern }} {{ session.firstname }}</a>
+                <a href="{{ path('removeInternToSession', {'sessionId':session.id, 'internId':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
+            </p>
         {% endfor %}
 
         <div class="listingSession">
+           
            
         </div>
         

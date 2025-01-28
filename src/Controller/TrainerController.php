@@ -36,23 +36,29 @@ final class TrainerController extends AbstractController
         ]);
     }
 
-    //Affiche le formulaire d'ajout
-    #[Route('/trainer/addTrainer', name: 'app_addTrainer')]
-    public function addTrainer(Request $request, EntityManagerInterface $entityManager): Response
+    //Affiche le formulaire d'ajout et d'édition
+    #[Route('/trainer/newTrainer', name: 'add_trainer')]
+    #[Route('/trainer/{id}/newTrainer', name: 'edit_trainer')]
+    public function addEditTrainer(Trainer $trainer = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $trainer = new Trainer;
+
+        if(!$trainer) {
+            $trainer = new Trainer();
+        }
+
         $form = $this->createForm(TrainerType::class, $trainer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $intern = $form->getData();
-            $entityManager->persist($intern);
+            $trainer = $form->getData();
+            $entityManager->persist($trainer);
             $entityManager->flush();
             return $this->redirectToRoute('app_trainer');
         }
 
-        return $this->render('trainer/addTrainer.html.twig', [
+        return $this->render('trainer/newTrainer.html.twig', [
            'formTrainer' => $form,
+           'edit' => $trainer->getId(),
         ]);
     }
 

@@ -34,33 +34,11 @@ final class InternController extends AbstractController
         ]);
     }
 
-
-    //Affiche le formulaire d'ajout
-    // #[Route('/intern/addIntern', name: 'app_addIntern')]
-
-    // public function addIntern(Request $request, EntityManagerInterface $entityManager): Response
-    // {
-    //     $intern = new Intern;
-    //     $form = $this->createForm(InternType::class, $intern);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $intern = $form->getData();
-    //         $entityManager->persist($intern);
-    //         $entityManager->flush();
-    //         return $this->redirectToRoute('app_intern');
-    //     }
-
-    //     return $this->render('intern/addIntern.html.twig', [
-    //         'formIntern' => $form,
-    //     ]);
-    // }
-
     //Ajout et édition 
     #[Route('/intern/newIntern', name: 'add_intern')]
     #[Route('/intern/{id}/newIntern', name: 'edit_intern')]
 
-    public function addEdit(Intern $intern = null, Request $request, EntityManagerInterface $entityManager): Response
+    public function addEditIntern(Intern $intern = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if(!$intern) {
             $intern = new Intern();

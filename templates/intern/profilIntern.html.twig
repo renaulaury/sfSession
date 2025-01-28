@@ -7,13 +7,13 @@
 <section>
     <div class="titre">
         <h3 >Liste des stagiaires </h3>
-        <a href="{{ path('app_addIntern') }}"><i class="fa-solid fa-plus"></i></a>
+        <a href="{{ path('add_intern') }}"><i class="fa-solid fa-plus"></i></a>
     </div>
 
     <div class="blocIntern">
        
-
-            <a href="{{ path('app_editIntern') }}"><i class="fa-solid fa-pencil"></i></a>
+        <div>
+            <a href="{{ path('edit_intern', {'id':intern.id}) }}"><i class="fa-solid fa-pencil"></i></a>
         </div>
 
         <div class="infosIntern">
@@ -31,7 +31,6 @@
                 <p>Né le : {{ intern.dateBirthFr}}</p>
             </div>
             
-            <h3>Sessions prévues :</h3>
             
 
     </div>

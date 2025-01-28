@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Intern;
 use App\Entity\Session;
 use App\Form\SessionType;
 use Doctrine\ORM\EntityManager;
@@ -53,21 +54,29 @@ final class SessionController extends AbstractController
 
     //Affiche le détail de la session
     #[Route('/session/detailSession/{id}', name: 'app_detailSession')]
-    public function detailSession(Session $session, ProgramRepository $programRepo): Response
+    public function detailSession(Session $session, ProgramRepository $programRepo, Intern $intern): Response
     {    
         $programs = $programRepo->findAll();
 
         return $this->render('session/detailSession.html.twig', [
             'session' => $session,
-            'programs' => $programs
+            'programs' => $programs,
+            'intern' => $intern,
         ]);
     }
 
-    #[Route('/session/editSession', name: 'app_editSession')]
-    public function editSession(): Response
+    #[Route('/session/{sessionId}/detailSession/{internId}', name: 'removeInternToSession')]
+    public function deleteInternToSession(SessionRepository $sessionRepo, InternRepository $internRepo, EntityManagerInterface $entityManager, int $sessionId, int $internId)
     {
-        return $this->render('session/editSession.html.twig', [
-        ]);
+        $session = $sessionRepo->find($sessionId); //Recup id session
+        $intern = $internRepo->find($internId); //Recup id intern
+        $session->removeIntern($intern); //suppr intern
+
+        //Maj BDD
+        $entityManager->persist($session);
+        $entityManager->flush();
+          
+        return $this->redirectToRoute('app_session', ['id' => $sessionId]);
     }
 
     #[Route('/session/deleteSession', name: 'app_deleteSession')]

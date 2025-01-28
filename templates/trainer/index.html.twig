@@ -7,16 +7,18 @@
 <section>
     <div class="titre">
         <h3 >Liste des formateurs</h3>
-        <a href="{{ path('app_addTrainer') }}"><i class="fa-solid fa-plus"></i></a>
+        <a href="{{ path('add_trainer') }}"><i class="fa-solid fa-plus"></i></a>
     </div>
 
     <div class="listTrainer"> 
 
         {% for trainer in trainers %}
             <div>
-                <p><a href="{{ path('app_profilTrainer', {'id':trainer.id}) }}">{{ trainer.nameTrainer }} {{ trainer.firstname }}</a></p>
-                <a href="{{ path('app_editTrainer') }}"><i class="fa-solid fa-pencil"></i></a>
-                <a href="{{ path('app_deleteTrainer') }}"><i class="fa-solid fa-trash"></i></a>
+                <p>
+                    <a href="{{ path('app_profilTrainer', {'id':trainer.id}) }}">{{ trainer.nameTrainer }} {{ trainer.firstname }}</a></p>
+                    <a href="{{ path('edit_trainer', {'id':trainer.id}) }}"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="{{ path('app_deleteTrainer') }}"><i class="fa-solid fa-trash"></i></a>
+                </p>
             </div>
    
         {% endfor %}
