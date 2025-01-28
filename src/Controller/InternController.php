@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class InternController extends AbstractController
 {
+    //Affiche liste des stagiaires
     #[Route('/intern', name: 'app_intern')]
     public function index(InternRepository $internRepo): Response
     {
@@ -23,6 +24,7 @@ final class InternController extends AbstractController
         ]);
     }
 
+    //Affiche le profil perso
     #[Route('/intern/profilIntern/{id}', name: 'app_profilIntern')]
 
     public function profilIntern(Intern $intern): Response
@@ -34,11 +36,36 @@ final class InternController extends AbstractController
 
 
     //Affiche le formulaire d'ajout
-    #[Route('/intern/addIntern', name: 'app_addIntern')]
+    // #[Route('/intern/addIntern', name: 'app_addIntern')]
 
-    public function addIntern(Request $request, EntityManagerInterface $entityManager): Response
+    // public function addIntern(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     $intern = new Intern;
+    //     $form = $this->createForm(InternType::class, $intern);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $intern = $form->getData();
+    //         $entityManager->persist($intern);
+    //         $entityManager->flush();
+    //         return $this->redirectToRoute('app_intern');
+    //     }
+
+    //     return $this->render('intern/addIntern.html.twig', [
+    //         'formIntern' => $form,
+    //     ]);
+    // }
+
+    //Ajout et édition 
+    #[Route('/intern/newIntern', name: 'add_intern')]
+    #[Route('/intern/{id}/newIntern', name: 'edit_intern')]
+
+    public function addEdit(Intern $intern = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $intern = new Intern;
+        if(!$intern) {
+            $intern = new Intern();
+        }
+
         $form = $this->createForm(InternType::class, $intern);
         $form->handleRequest($request);
 
@@ -49,18 +76,14 @@ final class InternController extends AbstractController
             return $this->redirectToRoute('app_intern');
         }
 
-        return $this->render('intern/addIntern.html.twig', [
+        return $this->render('intern/newIntern.html.twig', [
             'formIntern' => $form,
+            'edit' => $intern->getId(),
         ]);
     }
 
-    #[Route('/intern/editIntern', name: 'app_editIntern')]
-    public function editIntern(): Response
-    {
-        return $this->render('intern/editIntern.html.twig', [
-        ]);
-    }
 
+    //Suppression 
     #[Route('/intern/deleteIntern', name: 'app_deleteIntern')]
     public function deleteIntern(): Response
     {

@@ -7,7 +7,11 @@
 
 <section>
     <div class="titre">
-        <h3 >Ajouter un stagiaire </h3>
+        {% if edit %}
+            <h3 >Modifier un stagiaire </h3>
+        {% else %}
+            <h3 >Ajouter un stagiaire </h3>
+        {% endif %}
         <a href="{{ path('app_intern') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
@@ -32,10 +36,10 @@
         </div>
 
         <div>
-            {# {{ form_row(formIntern.submit) }} #}
+            {# {{ form_row(formIntern.submit) }}  #}
         </div>
 
-       {{ form_end(formIntern)}}
+       {{ form_end(formIntern)}} 
 
 
     </div>
