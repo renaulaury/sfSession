@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Intern;
+use App\Entity\Session;
 use App\Form\InternType;
 use App\Repository\InternRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,10 +28,11 @@ final class InternController extends AbstractController
     //Affiche le profil perso
     #[Route('/intern/profilIntern/{id}', name: 'app_profilIntern')]
 
-    public function profilIntern(Intern $intern): Response
+    public function profilIntern(Intern $intern, Session $session): Response
     {
         return $this->render('intern/profilIntern.html.twig', [
             'intern' => $intern,
+            'session' => $session,
         ]);
     }
 

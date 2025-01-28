@@ -16,9 +16,7 @@
     <div class="blockSession"> 
         <h3>Formation : {{session.training.libelleTraining }}</h3>
 
-        <h4>Modules</h4>
-        {# {{ dump(programs) }} #}
-        
+        <h4>Modules</h4>        
 
         {% for program in session.programs %} 
              <p>{{ program.module }} </p>

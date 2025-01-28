@@ -31,6 +31,14 @@
                 <p>Né le : {{ intern.dateBirthFr}}</p>
             </div>
             
+
+            <div>
+                <h4>Session prévues</h4>
+                
+                {% for intern in intern.sessions %}
+                    <p>{{ intern.libelleSession }}</p>
+                {% endfor %}
+             </div>
             
 
     </div>

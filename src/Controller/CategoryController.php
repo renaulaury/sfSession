@@ -66,11 +66,15 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-
-    #[Route('/category/deleteCat', name: 'app_deleteCat')]
-    public function deleteCat(): Response
+    //Suppression
+    #[Route('/categorie/{id}/deleteCat', name: 'deleteCat')]
+    public function deleteCategorie(Category $category, EntityManagerInterface $entityManager)
     {
-        return $this->render('category/deleteCat.html.twig', [
-        ]);
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_category');
     }
+
+   
 }
