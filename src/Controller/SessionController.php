@@ -79,10 +79,13 @@ final class SessionController extends AbstractController
         return $this->redirectToRoute('app_session', ['id' => $sessionId]);
     }
 
-    #[Route('/session/deleteSession', name: 'app_deleteSession')]
-    public function deleteSession(): Response
+    //Suppression     
+    #[Route('/session/{id}/deleteSession', name: 'app_deleteSession')]
+    public function deleteSession(Session $session, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('session/deleteSession.html.twig', [
-        ]);
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_session');
     }
 }
