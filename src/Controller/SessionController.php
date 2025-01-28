@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Response as BrowserKitResponse;
 
 final class SessionController extends AbstractController
 {
@@ -54,17 +55,32 @@ final class SessionController extends AbstractController
 
     //Affiche le détail de la session
     #[Route('/session/detailSession/{id}', name: 'app_detailSession')]
-    public function detailSession(Session $session, ProgramRepository $programRepo, Intern $intern): Response
+    public function detailSession(Session $session = null, SessionRepository $sessionRepo, ProgramRepository $programRepo, Intern $intern): Response
     {    
         $programs = $programRepo->findAll();
+        $noRegistered = $sessionRepo->findNoRegistered($session->getId());
 
         return $this->render('session/detailSession.html.twig', [
             'session' => $session,
             'programs' => $programs,
             'intern' => $intern,
+            'noRegistered' => $noRegistered,
         ]);
     }
+   
 
+
+    //Suppression     
+    #[Route('/session/{id}/deleteSession', name: 'app_deleteSession')]
+    public function deleteSession(Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_session');
+    }
+
+    //Supprime un stagiaire dans la session
     #[Route('/session/{sessionId}/detailSession/{internId}', name: 'removeInternToSession')]
     public function deleteInternToSession(SessionRepository $sessionRepo, InternRepository $internRepo, EntityManagerInterface $entityManager, int $sessionId, int $internId)
     {
@@ -78,14 +94,5 @@ final class SessionController extends AbstractController
           
         return $this->redirectToRoute('app_session', ['id' => $sessionId]);
     }
-
-    //Suppression     
-    #[Route('/session/{id}/deleteSession', name: 'app_deleteSession')]
-    public function deleteSession(Session $session, EntityManagerInterface $entityManager): Response
-    {
-        $entityManager->remove($session);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('app_session');
-    }
+    
 }
