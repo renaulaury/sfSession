@@ -6,9 +6,15 @@
 
 <section>
     <div class="titre">
-        <h3 >Ajouter une formation</h3>
+        {% if edit %}
+            <h3 >Modifier une formation </h3>
+        {% else %}
+            <h3 >Ajouter une formation </h3>
+        {% endif %}
         <a href="{{ path('app_training') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
+
+
 
     <div class="addTraining"> 
 

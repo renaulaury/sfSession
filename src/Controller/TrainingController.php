@@ -36,33 +36,33 @@ final class TrainingController extends AbstractController
         ]);
     }
 
-    //Formulaire d'ajout
-    #[Route('/training/addTraining', name: 'app_addTraining')]
-    public function addTraining(Request $request, EntityManagerInterface $entityManager): Response
+    //Formulaire d'ajout et d'édition
+    #[Route('/training/newTRaining', name: 'add_training')]
+    #[Route('/training/{id}/newTraining', name: 'edit_training')]
+
+    public function addTraining(Training $training = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $intern = new Training;
-        $form = $this->createForm(TrainingType::class, $intern);
+        if(!$training) {
+            $training = new Training();
+        }
+
+        $form = $this->createForm(TrainingType::class, $training);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $intern = $form->getData();
-            $entityManager->persist($intern);
+            $training = $form->getData();
+            $entityManager->persist($training);
             $entityManager->flush();
             return $this->redirectToRoute('app_training');
         }
 
-        return $this->render('training/addTraining.html.twig', [
+        return $this->render('training/newTraining.html.twig', [
             'formTraining' => $form,
+            'edit' => $training->getId(),
         ]);
     }
 
-    #[Route('/training/editTraining', name: 'app_editTraining')]
-    public function editTraining(): Response
-    {
-        return $this->render('training/editTraining.html.twig', [
-        ]);
-    }
-
+    
     #[Route('/training/deleteTraining', name: 'app_deleteTraining')]
     public function deleteTraining(): Response
     {
