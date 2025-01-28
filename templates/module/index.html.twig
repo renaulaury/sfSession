@@ -7,14 +7,14 @@
 <section>
     <div class="titre">
         <h3 >Liste des modules</h3>    
-        <a href="{{ path('app_addModule') }}"><i class="fa-solid fa-plus"></i></a>    
+        <a href="{{ path('add_module') }}"><i class="fa-solid fa-plus"></i></a>    
     </div>
 
     <div class="listModule"> 
         {% for module in modules %}
             <p>
                 {{ module.libelleModule }}
-                <a href="{{ path('app_editModule') }}"><i class="fa-solid fa-pencil"></i></a>
+                <a href="{{ path('edit_module', {'id':module.id}) }}"><i class="fa-solid fa-pencil"></i></a>
                 <a href="{{ path('app_deleteModule') }}"><i class="fa-solid fa-trash"></i></a>
             </p>
         {% endfor %}

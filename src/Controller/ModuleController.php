@@ -24,11 +24,16 @@ final class ModuleController extends AbstractController
         ]);
     }
 
-    //Formulaire d'ajout
-    #[Route('/module/addModule', name: 'app_addModule')]
-    public function addModule(Request $request, EntityManagerInterface $entityManager): Response
+    //Formulaire d'ajout et d'édition
+    #[Route('/module/newModule', name: 'add_module')]
+    #[Route('/module/{id}/newModule', name: 'edit_module')]
+
+    public function addEditModule(Module $module = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $module = new Module;
+        if(!$module) {
+            $module = new Module();
+        }
+
         $form = $this->createForm(ModuleType::class, $module);
         $form->handleRequest($request);
 
@@ -39,8 +44,9 @@ final class ModuleController extends AbstractController
             return $this->redirectToRoute('app_module');
         }
 
-        return $this->render('module/addModule.html.twig', [   
-            'formModule' => $form,        
+        return $this->render('module/newModule.html.twig', [   
+            'formModule' => $form,      
+            'edit' => $module->getId(),  
         ]);
     }
 
