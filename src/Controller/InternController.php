@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Intern;
-use App\Entity\Session;
 use App\Form\InternType;
 use App\Repository\InternRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Session;
 
 final class InternController extends AbstractController
 {
@@ -63,11 +63,13 @@ final class InternController extends AbstractController
     }
 
 
-    //Suppression 
-    #[Route('/intern/deleteIntern', name: 'app_deleteIntern')]
-    public function deleteIntern(): Response
+    //Suppression     
+    #[Route('/intern/{id}/deleteIntern', name: 'app_deleteIntern')]
+    public function deleteIntern(Intern $intern, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('intern/deleteIntern.html.twig', [
-        ]);
+        $entityManager->remove($intern);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_intern');
     }
 }

@@ -50,17 +50,13 @@ final class ModuleController extends AbstractController
         ]);
     }
 
-    #[Route('/module/editModule', name: 'app_editModule')]
-    public function editModule(): Response
-    {
-        return $this->render('module/editModule.html.twig', [
-        ]);
-    }
-
-    #[Route('/module/deleteModule', name: 'app_deleteModule')]
-    public function deleteModule(): Response
-    {
-        return $this->render('module/deleteModule.html.twig', [
-        ]);
-    }
+     //Suppression     
+     #[Route('/module/{id}/deleteModule', name: 'app_deleteModule')]
+     public function deleteModule(Module $module, EntityManagerInterface $entityManager): Response
+     {
+         $entityManager->remove($module);
+         $entityManager->flush();
+ 
+         return $this->redirectToRoute('app_module');
+     }
 }

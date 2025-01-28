@@ -15,7 +15,7 @@
             <p>
                 {{ module.libelleModule }}
                 <a href="{{ path('edit_module', {'id':module.id}) }}"><i class="fa-solid fa-pencil"></i></a>
-                <a href="{{ path('app_deleteModule') }}"><i class="fa-solid fa-trash"></i></a>
+                <a href="{{ path('app_deleteModule', {'id':module.id}) }}"><i class="fa-solid fa-trash"></i></a>
             </p>
         {% endfor %}
         
