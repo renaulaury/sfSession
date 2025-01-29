@@ -31,6 +31,10 @@ final class TrainingController extends AbstractController
     public function detailTraining(Training $training): Response
     {
 
+        if(!$training) {
+            return $this->redirectToRoute('app_training');
+        }
+        
         return $this->render('training/detailTraining.html.twig', [
             'training' => $training,
         ]);
@@ -44,6 +48,7 @@ final class TrainingController extends AbstractController
     {
         if(!$training) {
             $training = new Training();
+            return $this->redirectToRoute('app_training');
         }
 
         $form = $this->createForm(TrainingType::class, $training);

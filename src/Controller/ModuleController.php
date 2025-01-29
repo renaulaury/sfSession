@@ -32,7 +32,9 @@ final class ModuleController extends AbstractController
     {
         if(!$module) {
             $module = new Module();
+            return $this->redirectToRoute('app_module');
         }
+
 
         $form = $this->createForm(ModuleType::class, $module);
         $form->handleRequest($request);

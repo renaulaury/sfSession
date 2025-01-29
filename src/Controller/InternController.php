@@ -30,6 +30,11 @@ final class InternController extends AbstractController
 
     public function profilIntern(Intern $intern, Session $session): Response
     {
+
+        if(!$intern) {
+            return $this->redirectToRoute('app_intern');
+        }
+
         return $this->render('intern/profilIntern.html.twig', [
             'intern' => $intern,
             'session' => $session,
@@ -44,6 +49,7 @@ final class InternController extends AbstractController
     {
         if(!$intern) {
             $intern = new Intern();
+            return $this->redirectToRoute('app_intern');
         }
 
         $form = $this->createForm(InternType::class, $intern);
@@ -67,6 +73,11 @@ final class InternController extends AbstractController
     #[Route('/intern/{id}/deleteIntern', name: 'app_deleteIntern')]
     public function deleteIntern(Intern $intern, EntityManagerInterface $entityManager): Response
     {
+
+        if(!$intern) {
+            return $this->redirectToRoute('app_intern');
+        }
+
         $entityManager->remove($intern);
         $entityManager->flush();
 

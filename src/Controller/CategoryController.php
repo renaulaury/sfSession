@@ -35,7 +35,9 @@ final class CategoryController extends AbstractController
     {
         if(!$category) {
             $category = new Category();
+            return $this->redirectToRoute('app_category');
         }
+
 
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -58,6 +60,10 @@ final class CategoryController extends AbstractController
     public function detailCat(Category $category, ModuleRepository $moduleRepo, $id): Response
     {
 
+        if(!$category) {
+            return $this->redirectToRoute('app_category');
+        }
+
         $modules = $moduleRepo->findBy(['category' => $id]);
 
         return $this->render('category/detailCat.html.twig', [
@@ -70,6 +76,11 @@ final class CategoryController extends AbstractController
     #[Route('/categorie/{id}/deleteCat', name: 'app_deleteCat')]
     public function deleteCategorie(Category $category, EntityManagerInterface $entityManager)
     {
+
+        if(!$category) {
+            return $this->redirectToRoute('app_category');
+        }
+        
         $entityManager->remove($category);
         $entityManager->flush();
 

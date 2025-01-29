@@ -44,6 +44,7 @@ final class TrainerController extends AbstractController
 
         if(!$trainer) {
             $trainer = new Trainer();
+            return $this->redirectToRoute('app_trainer');
         }
 
         $form = $this->createForm(TrainerType::class, $trainer);
@@ -67,6 +68,11 @@ final class TrainerController extends AbstractController
      #[Route('/trainer/{id}/deleteTrainer', name: 'app_deleteTrainer')]
      public function deleteTrainer(Trainer $trainer, EntityManagerInterface $entityManager): Response
      {
+
+        if(!$trainer) {
+            return $this->redirectToRoute('app_trainer');
+        }
+
          $entityManager->remove($trainer);
          $entityManager->flush();
  
