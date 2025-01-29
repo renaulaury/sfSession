@@ -58,16 +58,25 @@ final class SessionController extends AbstractController
     //Affiche le détail de la session
     #[Route('/session/detailSession/{id}', name: 'app_detailSession')]
     public function detailSession(Session $session = null, SessionRepository $sessionRepo, ProgramRepository $programRepo): Response
-    {    
+    {       
         $programs = $programRepo->findAll();
         $noRegistered = $sessionRepo->findNoRegistered($session->getId());
         $noProgrammed = $sessionRepo->findNoProgrammed($session->getId());
+
+        $internsRegistered = $session->getInterns();
+
+        $nbPlace = $session->getNbPlace();
+        $nbRegistered = count($internsRegistered);
+        $nbRegistered = count($internsRegistered);
+        $remainingPlaces = $nbPlace - $nbRegistered;
 
         return $this->render('session/detailSession.html.twig', [
             'session' => $session,
             'programs' => $programs,
             'noRegistered' => $noRegistered,
-            'noProgrammed' => $noProgrammed,
+            'noProgrammed' => $noProgrammed,                              
+            'nbRegistered' => $nbRegistered,            
+            'remainingPlaces' => $remainingPlaces,   
         ]);
     }
    
@@ -86,15 +95,28 @@ final class SessionController extends AbstractController
 
       //Ajoute un stagiaire dans la session
       #[Route('/session/{session}/addInternToSession/{intern}', name: 'addInternToSession')]
-    public function addInternToSession(Session $session, Intern $intern, InternRepository $internRepo, EntityManagerInterface $entityManager)
-    {        
+        public function addInternToSession(Session $session, Intern $intern, InternRepository $internRepo, EntityManagerInterface $entityManager)
+    {                  
+
+        $nbPlace = $session->getNbPlace();
+        $internsRegistered = $session->getInterns();
+        $nbRegistered = count($internsRegistered);
+        $remainingPlaces = $nbPlace - $nbRegistered;
+
+        if ($remainingPlaces <= 0) {
+            $this->addFlash('error', 'quota atteint');
+           return $this->redirectToRoute('app_detailSession', ['id' => $session->getId()]);
+        } 
+
         $intern = $internRepo->find($intern->getId());
         
         $session->addIntern($intern);
         $entityManager->persist($session);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_detailSession', ['id' => $session->getId()]);
+        return $this->redirectToRoute('app_detailSession', [
+            'id' => $session->getId(),           
+        ]);
     }
 
       //Supprime un module dans la session
@@ -107,14 +129,17 @@ final class SessionController extends AbstractController
           $entityManager->persist($program);
           $entityManager->flush();
             
-          return $this->redirectToRoute('app_detailSession', ['id' => $session->getId()]);
+          return $this->redirectToRoute('app_detailSession', [
+            'id' => $session->getId(),      
+        ]);
       }
 
       //Ajoute un module dans la session
       #[Route('/session/{session}/addModuleToSession/{module}', name: 'addModuleToSession')]
-      public function addModuleToSession(Session $session, Module $module, Request $request, EntityManagerInterface $entityManager)
+      public function addModuleToSession(Session $session, Module $module, EntityManagerInterface $entityManager)
       {
-        $nbDay = $request->request->get('nbDay');
+        // $nbDay = $request->request->get('nbDay');
+        $nbDay = filter_input(INPUT_POST, 'nbDay', FILTER_VALIDATE_INT);
 
         $program = new Program();
         $program->setModule($module);
@@ -126,7 +151,7 @@ final class SessionController extends AbstractController
         $entityManager->flush();
   
         return $this->redirectToRoute('app_detailSession', [
-            'id' => $session->getId(),
+            'id' => $session->getId(),      
         ]);
       }
 

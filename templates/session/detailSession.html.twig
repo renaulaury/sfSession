@@ -7,8 +7,9 @@
 
 <section>
     <div class="titre">
-        <div>
-         <h3 >Session : {{ session.libelleSession }} du {{ session.dateBeginFr }} au {{ session.dateEndFr }} encadrée par {{ session.trainer.nameTrainer }} {{ session.trainer.firstname }}</h3>
+        <div>   
+            <h3 >Session : {{ session.libelleSession }} du {{ session.dateBeginFr }} au {{ session.dateEndFr }} encadrée par {{ session.trainer.nameTrainer }} {{ session.trainer.firstname }} ( {{ nbRegistered }} / {{ session.nbPlace }} )                
+            </h3>
         </div>
         <a href="{{ path('app_session') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
@@ -53,9 +54,7 @@
                     <h4 class="subTitleSession">Modules non programmés</h4>
                     {% for noProgrammedModule in noProgrammed %}
                         <p>
-                            {{ noProgrammedModule.libelleModule }}  
-
-                            {# <a href="{{ path('addModuleToSession', {'session':session.id, 'module':noProgrammedModule.id}) }}"> </a> #}
+                            {{ noProgrammedModule.libelleModule }}
 
                                 <form method="POST" action="{{ path('addModuleToSession', {'session': session.id, 'module': noProgrammedModule.id}) }}">
                                     <input class="inputJ" type="number" min="1" name="nbDay" placeholder="jours" required>
@@ -69,12 +68,23 @@
         
                 <div class="#">
                     <h4 class="subTitleSession">Stagiaires non inscrits</h4>
-                    {% for noRegisteredIntern in noRegistered %}
+
+                    {% if remainingPlaces > 0 %}
+                        {% for noRegisteredIntern in noRegistered %}
                         <p>
                             <a href="{{ path('app_intern') }}">{{ noRegisteredIntern.nameIntern }} {{ noRegisteredIntern.firstname }} </a>
-                            <a href="{{ path('addInternToSession', {'session':session.id, 'intern':noRegisteredIntern.id}) }}"><i class="fa-solid fa-plus"></i></a>
+
+                                <a href="{{ path('addInternToSession', {'session':session.id, 'intern':noRegisteredIntern.id}) }}"><i class="fa-solid fa-plus"></i></a>       
                         </p>
-                    {% endfor %}            
+                        {% endfor %}
+                    {% else %}
+                        {% for noRegisteredIntern in noRegistered %}
+                            <p>
+                                <a href="{{ path('app_intern') }}">{{ noRegisteredIntern.nameIntern }} {{ noRegisteredIntern.firstname }} </a>       
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                                
                 </div>
             </div>
         </div>

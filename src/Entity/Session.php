@@ -81,6 +81,7 @@ class Session
         return $this;
     }
 
+
     public function getDateBegin(): ?\DateTimeInterface
     {
         return $this->dateBegin;
