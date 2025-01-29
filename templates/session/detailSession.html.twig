@@ -14,40 +14,65 @@
     </div>
 
     <div class="blockSession"> 
+        
         <h3>Formation : {{session.training.libelleTraining }}</h3>
 
-        <h4>Modules</h4>        
+        <div class="blockPlanning">
+            <div class="planning">
+                
+                <div>
+                    <h4 class="subTitleSession">Modules programmés</h4>   
+                    
+                
+                    <div class="listModuleSession">
+                        {% for program in session.programs %} 
+                            <p>{{ program.module }} </p>
+                            <p>{{ program.nbDay }} j</p>
+                            <p>{{ program.module.category }} </p> 
+                            <p>                               
+                                <i class="fa-solid fa-trash"></i>
+                            </p>
 
-        {% for program in session.programs %} 
-             <p>{{ program.module }} </p>
-             <p>{{ program.nbDay }} </p>
-             <p>{{ program.module.category }} </p> 
+                        {% endfor %} 
+                    </div>
+                </div>
 
-        {% endfor %} 
+                <div>
+                    <h4 class="subTitleSession">Stagiaires inscrits</h4>
+                    {% for session in session.interns %}
+                        <p>
+                            <a href="{{ path('app_intern') }}">{{ session.nameIntern }} {{ session.firstname }}</a>
+                            <a href="{{ path('removeInternToSession', {'sessionId':session.id, 'internId':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
 
+
+            <div class="planning">
+                <div class="#">
+                    <h4 class="subTitleSession">Modules non programmés</h4>
+                    {% for noProgrammedModule in noProgrammed %}
+                        <p>
+                            <a href="{{ path('app_module') }}">{{ noProgrammedModule.libelleModule }} </a>
+                            {# <a href="{{ path('removeModuleToSession', {'sessionId':session.id, 'programId':program.id}) }}"><i class="fa-solid fa-plus"></i></a> #}
+                        </p>
+                    {% endfor %}            
+                </div>
         
-        <h4>Stagiaires inscrits</h4>
-        {% for session in session.interns %}
-            <p>
-                <a href="{{ path('app_intern') }}">{{ session.nameIntern }} {{ session.firstname }}</a>
-                <a href="{{ path('removeInternToSession', {'sessionId':session.id, 'internId':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
-            </p>
-        {% endfor %}
-
-        <div class="#">
-            <h4>Stagiaires non inscrits</h4>
-             {% for noRegisteredIntern in noRegistered %}
-                <p>
-                    <a href="{{ path('app_intern') }}">{{ noRegisteredIntern.nameIntern }} {{ noRegisteredIntern.firstname }}</a>
-                    <a href="{{ path('removeInternToSession', {'sessionId':session.id, 'internId':intern.id}) }}"><i class="fa-solid fa-plus"></i></a>
-                </p>
-            {% endfor %} 
-           
+                <div class="#">
+                    <h4 class="subTitleSession">Stagiaires non inscrits</h4>
+                    {% for noRegisteredIntern in noRegistered %}
+                        <p>
+                            <a href="{{ path('app_intern') }}">{{ noRegisteredIntern.nameIntern }} {{ noRegisteredIntern.firstname }} </a>
+                            <a href="{{ path('removeInternToSession', {'sessionId':session.id, 'internId':intern.id}) }}"><i class="fa-solid fa-plus"></i></a>
+                        </p>
+                    {% endfor %}            
+                </div>
+            </div>
         </div>
-        
     </div>
 
-    
 </section>
 
 
