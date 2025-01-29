@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Intern;
+use App\Entity\Program;
 use App\Entity\Session;
 use App\Form\SessionType;
 use Doctrine\ORM\EntityManager;
@@ -15,8 +16,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\BrowserKit\Response as BrowserKitResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class SessionController extends AbstractController
 {
@@ -55,7 +56,7 @@ final class SessionController extends AbstractController
 
     //Affiche le détail de la session
     #[Route('/session/detailSession/{id}', name: 'app_detailSession')]
-    public function detailSession(Session $session = null, SessionRepository $sessionRepo, ProgramRepository $programRepo, Intern $intern): Response
+    public function detailSession(Session $session = null, SessionRepository $sessionRepo, ProgramRepository $programRepo): Response
     {    
         $programs = $programRepo->findAll();
         $noRegistered = $sessionRepo->findNoRegistered($session->getId());
@@ -64,40 +65,35 @@ final class SessionController extends AbstractController
         return $this->render('session/detailSession.html.twig', [
             'session' => $session,
             'programs' => $programs,
-            'intern' => $intern,
             'noRegistered' => $noRegistered,
             'noProgrammed' => $noProgrammed,
         ]);
     }
    
       //Supprime un stagiaire dans la session
-      #[Route('/session/{sessionId}/detailSession/{internId}', name: 'removeInternToSession')]
-      public function deleteInternToSession(SessionRepository $sessionRepo, InternRepository $internRepo, EntityManagerInterface $entityManager, int $sessionId, int $internId)
+      #[Route('/session/{session}/removeInternToSession/{intern}', name: 'removeInternToSession')]
+      public function deleteInternToSession(EntityManagerInterface $entityManager, Session $session, Intern $intern)
       {
-          $session = $sessionRepo->find($sessionId); //Recup id session
-          $intern = $internRepo->find($internId); //Recup id intern
           $session->removeIntern($intern); //suppr intern
   
           //Maj BDD
           $entityManager->persist($session);
           $entityManager->flush();
             
-          return $this->redirectToRoute('app_session', ['id' => $sessionId]);
+          return $this->redirectToRoute('app_session', ['id' => $session->getId()]);
       }
 
       //Supprime un module dans la session
-      #[Route('/session/{sessionId}/detailSession/{programId}', name: 'removeModuleToSession')]
-      public function deleteModuleToSession(SessionRepository $sessionRepo, ProgramRepository $programRepo, EntityManagerInterface $entityManager, int $sessionId, int $programId)
+      #[Route('/session/{session}/removeModuleToSession/{program}', name: 'removeModuleToSession')]
+      public function deleteModuleToSession(EntityManagerInterface $entityManager, Session $session, Program $program)
       {
-          $session = $sessionRepo->find($sessionId); //Recup id session
-          $program = $programRepo->find($programId); //Recup id program
           $session->removeModule($program); //suppr module
   
           //Maj BDD
           $entityManager->persist($program);
           $entityManager->flush();
             
-          return $this->redirectToRoute('app_session', ['id' => $sessionId]);
+          return $this->redirectToRoute('app_session', ['id' => $session->getId()]);
       }
 
 

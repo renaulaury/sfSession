@@ -39,10 +39,10 @@
 
                 <div>
                     <h4 class="subTitleSession">Stagiaires inscrits</h4>
-                    {% for session in session.interns %}
+                    {% for intern in session.interns %}
                         <p>
-                            <a href="{{ path('app_intern') }}">{{ session.nameIntern }} {{ session.firstname }}</a>
-                            <a href="{{ path('removeInternToSession', {'sessionId':session.id, 'internId':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                            <a href="{{ path('app_intern') }}">{{ intern.nameIntern }} {{ intern.firstname }}</a>
+                            <a href="{{ path('removeInternToSession', {'session':session.id, 'intern':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
                         </p>
                     {% endfor %}
                 </div>
@@ -65,7 +65,7 @@
                     {% for noRegisteredIntern in noRegistered %}
                         <p>
                             <a href="{{ path('app_intern') }}">{{ noRegisteredIntern.nameIntern }} {{ noRegisteredIntern.firstname }} </a>
-                            <a href="{{ path('removeInternToSession', {'sessionId':session.id, 'internId':intern.id}) }}"><i class="fa-solid fa-plus"></i></a>
+                            <a href="{{ path('removeInternToSession', {'session':session.id, 'intern':noRegisteredIntern.id}) }}"><i class="fa-solid fa-plus"></i></a>
                         </p>
                     {% endfor %}            
                 </div>
