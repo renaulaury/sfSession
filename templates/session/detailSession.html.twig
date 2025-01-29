@@ -58,7 +58,7 @@
                             {# <a href="{{ path('addModuleToSession', {'session':session.id, 'module':noProgrammedModule.id}) }}"> </a> #}
 
                                 <form method="POST" action="{{ path('addModuleToSession', {'session': session.id, 'module': noProgrammedModule.id}) }}">
-                                    <input class="inputJ" type="number" min="0" name="nbDay" placeholder="jours" required>
+                                    <input class="inputJ" type="number" min="1" name="nbDay" placeholder="jours" required>
                                     <button type="submit">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>

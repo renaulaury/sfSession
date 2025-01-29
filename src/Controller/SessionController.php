@@ -112,14 +112,15 @@ final class SessionController extends AbstractController
 
       //Ajoute un module dans la session
       #[Route('/session/{session}/addModuleToSession/{module}', name: 'addModuleToSession')]
-      public function addModuleToSession(Session $session, Module $module, EntityManagerInterface $entityManager)
+      public function addModuleToSession(Session $session, Module $module, Request $request, EntityManagerInterface $entityManager)
       {
-        $nbDay = 1;
+        $nbDay = $request->request->get('nbDay');
 
         $program = new Program();
         $program->setModule($module);
         $program->setSession($session);
         $program->setNbDay($nbDay);
+        
 
         $entityManager->persist($program);
         $entityManager->flush();
