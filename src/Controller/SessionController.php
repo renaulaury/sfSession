@@ -25,7 +25,7 @@ final class SessionController extends AbstractController
     //Affiche liste sessions
     #[Route('/session', name: 'app_session')]
 
-    public function index(SessionRepository $sessionRepo, TrainerRepository $trainerRepo): Response
+    public function index(SessionRepository $sessionRepo): Response
     {
 
         $sessions = $sessionRepo->findAll();
@@ -59,6 +59,11 @@ final class SessionController extends AbstractController
     #[Route('/session/detailSession/{id}', name: 'app_detailSession')]
     public function detailSession(Session $session = null, SessionRepository $sessionRepo, ProgramRepository $programRepo): Response
     {       
+
+        if(!$session) {
+            return $this->redirectToRoute('app_session');
+        }
+
         $programs = $programRepo->findAll();
         $noRegistered = $sessionRepo->findNoRegistered($session->getId());
         $noProgrammed = $sessionRepo->findNoProgrammed($session->getId());
@@ -84,6 +89,11 @@ final class SessionController extends AbstractController
       #[Route('/session/{session}/removeInternToSession/{intern}', name: 'removeInternToSession')]
       public function deleteInternToSession(EntityManagerInterface $entityManager, Session $session, Intern $intern)
       {
+
+        if(!$session) {
+            return $this->redirectToRoute('app_session');
+        }
+
           $session->removeIntern($intern); //suppr intern
   
           //Maj BDD
@@ -96,7 +106,11 @@ final class SessionController extends AbstractController
       //Ajoute un stagiaire dans la session
       #[Route('/session/{session}/addInternToSession/{intern}', name: 'addInternToSession')]
         public function addInternToSession(Session $session, Intern $intern, InternRepository $internRepo, EntityManagerInterface $entityManager)
-    {                  
+        {                  
+
+            if(!$session) {
+                return $this->redirectToRoute('app_session');
+            }
 
         $nbPlace = $session->getNbPlace();
         $internsRegistered = $session->getInterns();
@@ -123,6 +137,10 @@ final class SessionController extends AbstractController
       #[Route('/session/{session}/removeModuleToSession/{program}', name: 'removeModuleToSession')]
       public function deleteModuleToSession(EntityManagerInterface $entityManager, Session $session, Program $program)
       {
+        if(!$session) {
+            return $this->redirectToRoute('app_session');
+        }
+
           $session->removeProgram($program); //suppr module
   
           //Maj BDD
@@ -138,6 +156,10 @@ final class SessionController extends AbstractController
       #[Route('/session/{session}/addModuleToSession/{module}', name: 'addModuleToSession')]
       public function addModuleToSession(Session $session, Module $module, EntityManagerInterface $entityManager)
       {
+        if(!$session) {
+            return $this->redirectToRoute('app_session');
+        }
+
         // $nbDay = $request->request->get('nbDay');
         $nbDay = filter_input(INPUT_POST, 'nbDay', FILTER_VALIDATE_INT);
 
@@ -160,6 +182,10 @@ final class SessionController extends AbstractController
     #[Route('/session/{id}/deleteSession', name: 'app_deleteSession')]
     public function deleteSession(Session $session, EntityManagerInterface $entityManager, int $sessionId): Response
     {
+        if(!$session) {
+            return $this->redirectToRoute('app_session');
+        }
+        
         $entityManager->remove($session);
         $entityManager->flush();
 
