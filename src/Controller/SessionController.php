@@ -83,11 +83,26 @@ final class SessionController extends AbstractController
           return $this->redirectToRoute('app_session', ['id' => $session->getId()]);
       }
 
+      //Ajoute un stagiaire dans la session
+      #[Route('/session/{session}/addInternToSession/{intern}', name: 'addInternToSession')]
+    public function AddStagToSession(Session $session, Intern $intern, SessionRepository $sessionRepo, InternRepository $internRepo, EntityManagerInterface $entityManager)
+    {
+        $internRegistered = $session->getInterns();
+        
+        $intern = $internRepo->find($intern->getId());
+        
+        $session->addIntern($intern);
+        $entityManager->persist($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_session', ['id' => $session->getId()]);
+    }
+
       //Supprime un module dans la session
       #[Route('/session/{session}/removeModuleToSession/{program}', name: 'removeModuleToSession')]
       public function deleteModuleToSession(EntityManagerInterface $entityManager, Session $session, Program $program)
       {
-          $session->removeModule($program); //suppr module
+          $session->removeProgram($program); //suppr module
   
           //Maj BDD
           $entityManager->persist($program);

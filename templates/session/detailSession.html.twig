@@ -29,8 +29,8 @@
                             <p>{{ program.module }} </p>
                             <p>{{ program.nbDay }} j</p>
                             <p>{{ program.module.category }} </p> 
-                            <p>                               
-                                <i class="fa-solid fa-trash"></i>
+                            <p>             
+                                <a href="{{ path('removeModuleToSession', {'session':session.id, 'program':program.id}) }}"><i class="fa-solid fa-trash"></i></a>                  
                             </p>
 
                         {% endfor %} 
@@ -65,7 +65,7 @@
                     {% for noRegisteredIntern in noRegistered %}
                         <p>
                             <a href="{{ path('app_intern') }}">{{ noRegisteredIntern.nameIntern }} {{ noRegisteredIntern.firstname }} </a>
-                            <a href="{{ path('removeInternToSession', {'session':session.id, 'intern':noRegisteredIntern.id}) }}"><i class="fa-solid fa-plus"></i></a>
+                            <a href="{{ path('addInternToSession', {'session':session.id, 'intern':noRegisteredIntern.id}) }}"><i class="fa-solid fa-plus"></i></a>
                         </p>
                     {% endfor %}            
                 </div>
