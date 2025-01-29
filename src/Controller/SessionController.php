@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Intern;
+use App\Entity\Module;
 use App\Entity\Program;
 use App\Entity\Session;
 use App\Form\SessionType;
@@ -80,22 +81,20 @@ final class SessionController extends AbstractController
           $entityManager->persist($session);
           $entityManager->flush();
             
-          return $this->redirectToRoute('app_session', ['id' => $session->getId()]);
+          return $this->redirectToRoute('app_detailSession', ['id' => $session->getId()]);
       }
 
       //Ajoute un stagiaire dans la session
       #[Route('/session/{session}/addInternToSession/{intern}', name: 'addInternToSession')]
-    public function AddStagToSession(Session $session, Intern $intern, SessionRepository $sessionRepo, InternRepository $internRepo, EntityManagerInterface $entityManager)
-    {
-        $internRegistered = $session->getInterns();
-        
+    public function addInternToSession(Session $session, Intern $intern, InternRepository $internRepo, EntityManagerInterface $entityManager)
+    {        
         $intern = $internRepo->find($intern->getId());
         
         $session->addIntern($intern);
         $entityManager->persist($session);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_session', ['id' => $session->getId()]);
+        return $this->redirectToRoute('app_detailSession', ['id' => $session->getId()]);
     }
 
       //Supprime un module dans la session
@@ -108,7 +107,26 @@ final class SessionController extends AbstractController
           $entityManager->persist($program);
           $entityManager->flush();
             
-          return $this->redirectToRoute('app_session', ['id' => $session->getId()]);
+          return $this->redirectToRoute('app_detailSession', ['id' => $session->getId()]);
+      }
+
+      //Ajoute un module dans la session
+      #[Route('/session/{session}/addModuleToSession/{module}', name: 'addModuleToSession')]
+      public function addModuleToSession(Session $session, Module $module, EntityManagerInterface $entityManager)
+      {
+        $nbDay = 1;
+
+        $program = new Program();
+        $program->setModule($module);
+        $program->setSession($session);
+        $program->setNbDay($nbDay);
+
+        $entityManager->persist($program);
+        $entityManager->flush();
+  
+        return $this->redirectToRoute('app_detailSession', [
+            'id' => $session->getId(),
+        ]);
       }
 
 

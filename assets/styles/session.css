@@ -44,3 +44,7 @@
     grid-template-columns: repeat(4, 0.4fr);
     grid-template-rows: auto;
 }
+
+.inputJ {
+    width: 15%;
+}

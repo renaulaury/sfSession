@@ -39,7 +39,7 @@ class SessionRepository extends ServiceEntityRepository
             //requete paramétrée
             ->setParameter('id', $session_id)
             //trier liste des stagiaires sur le nom de famille
-            ->orderBy('int.nameIntern');
+            ->orderBy('int.nameIntern', 'ASC');
 
         //Renvoie du résultat
         $query = $sub->getQuery();
@@ -70,7 +70,7 @@ class SessionRepository extends ServiceEntityRepository
             //requete paramétrée
             ->setParameter('id', $session_id)
             //trier liste des modules 
-            ->orderBy('mo.libelleModule');
+            ->orderBy('mo.libelleModule', 'ASC');
 
         //Renvoie du résultat
         $query = $sub->getQuery();
