@@ -47,11 +47,18 @@ final class InternController extends AbstractController
 
     public function addEditIntern(Intern $intern = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        if(!$intern) {
-            $intern = new Intern();
+        //ajout
+        //request recup get et post - recup id dans url avec attributes
+        if($request->attributes->get('id') && (!$intern)) {
             return $this->redirectToRoute('app_intern');
         }
 
+        //edition
+        if(!$intern) {
+            $intern = new Intern();
+        }
+
+        
         $form = $this->createForm(InternType::class, $intern);
         $form->handleRequest($request);
 
