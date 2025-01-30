@@ -10,16 +10,21 @@
         <a href="{{ path('add_cat') }}"><i class="fa-solid fa-plus"></i></a>
     </div>
 
-    <div class="listCat"> 
+    <div class="blocCat">
+        <div class="listCat"> 
 
-        {% for category in categories %}
-            <div><p> 
-                <a href="{{ path('app_detailCat', {'id':category.id}) }}">{{ category.  libelleCategory }}</a></p>
-                <a href="{{ path('edit_cat', {'id':category.id}) }}"><i class="fa-solid fa-pencil"></i></a>
-                <a href="{{ path('app_deleteCat', {'id':category.id}) }}"><i class="fa-solid fa-trash"></i></a>
-            </div>
-        {% endfor %}
-        
+            {% for category in categories %}
+                
+                    <p> 
+                        <a href="{{ path('app_detailCat', {'id':category.id}) }}">{{ category.  libelleCategory }}</a>
+                    </p>
+                    <p>
+                        <a href="{{ path('edit_cat', {'id':category.id}) }}"><i class="fa-solid fa-pencil"></i></a>
+                        <a href="{{ path('app_deleteCat', {'id':category.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                    </p>
+                
+            {% endfor %}
+        </div>
     </div>
 </section>
 

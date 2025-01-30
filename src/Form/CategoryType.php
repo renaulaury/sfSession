@@ -17,7 +17,9 @@ class CategoryType extends AbstractType
             ->add('libelleCategory', TextType::class, [
                 'label' => 'Catégorie',
             ])
-            ->add('Valider', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Valider'
+            ])
         ;
     }
 

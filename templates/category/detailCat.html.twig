@@ -10,16 +10,17 @@
         <a href="{{ path('app_category') }}"><i class="fa-solid fa-rotate-left"></i></a>
     </div>
 
-    <div class="listCat"> 
-
-        
-        {% for module in modules %}            
-            <p> {{ module.libelleModule }}</p>
-            <a href="{{ path('edit_cat', {'id':category.id}) }}"><i class="fa-solid fa-pencil"></i></a>
-            <a href="{{ path('app_deleteCat') }}"><i class="fa-solid fa-trash"></i></a>
-
-        {% endfor %}
-        
+    <div class="blocCat">
+        <div class="listCat"> 
+            
+            {% for module in modules %}            
+                <p> {{ module.libelleModule }}</p>
+                <p>
+                    <a href="{{ path('edit_cat', {'id':category.id}) }}"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="{{ path('app_deleteCat', {'id':category.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            {% endfor %}
+        </div>
     </div>
 </section>
 

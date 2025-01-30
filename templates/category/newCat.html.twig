@@ -18,9 +18,17 @@
 
 
     <div class="addCat"> 
-        {{ form_start(formCategory)}}
+        <div class="formInput">
+            {{ form_start(formCategory)}}
+        </div>
 
+        <div class="formInput">
         {{ form_row(formCategory.libelleCategory)}}
+    </div>
+
+        <div class="formButton">
+            {{ form_widget(formCategory.submit) }} 
+        </div>
 
         {{ form_end(formCategory)}}
     </div>
