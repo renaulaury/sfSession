@@ -13,16 +13,17 @@
     <div class="blocIntern">
         <div class="listIntern">
             {# for inversé ds symfony #}
+
              {% for intern in interns %} 
              <p><a href=" {{ path('app_profilIntern', {'id':intern.id}) }}">
                     {{ intern.nameIntern }} {{ intern.firstname }}
-                </a></p>
+                </a>
+             </p>
                 <a href="{{ path('edit_intern', {'id':intern.id }) }}"><i class="fa-solid fa-pencil"></i></a>
 
             {% endfor %}
 
 
-            
         </div>
 
         

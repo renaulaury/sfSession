@@ -18,25 +18,30 @@
     <div class="addIntern"> 
         {{ form_start(formIntern)}}
 
-        <div>
-            {{ form_row(formIntern.nameIntern) }}
-            {{ form_row(formIntern.firstname) }}
-            {{ form_row(formIntern.city) }}
-        </div>
-
-        <div>
-            {{ form_row(formIntern.dateBirth) }}            
-            {{ form_row(formIntern.sex) }}
+        
+            <div class="formInput">
+                {{ form_row(formIntern.nameIntern) }} 
+                {{ form_row(formIntern.firstname) }}                
+            </div>
             
-        </div>
 
-        <div>
+        <div class="formInput">
             {{ form_row(formIntern.phone) }}
             {{ form_row(formIntern.email) }}
         </div>
 
-        <div>
-            {# {{ form_row(formIntern.submit) }}  #}
+        
+        <div class="formInput">       
+            {{ form_row(formIntern.dateBirth) }} 
+            {{ form_row(formIntern.sex) }}    
+        </div>
+
+        <div class="formInput">
+            {{ form_row(formIntern.city) }}         
+        </div>
+
+        <div class="formButton">
+            {{ form_widget(formIntern.submit) }} 
         </div>
 
        {{ form_end(formIntern)}} 

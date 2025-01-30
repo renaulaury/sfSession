@@ -40,7 +40,9 @@ class InternType extends AbstractType
             ->add('phone', TextType::class, [
                 'label' => 'Téléphone',
                 ])
-            ->add('Valider', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Valider',
+            ])
             
             // ->add('sessions', EntityType::class, [
             //     'class' => Session::class,

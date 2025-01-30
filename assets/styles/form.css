@@ -1,0 +1,37 @@
+/*Form général */
+.formInput {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+}
+
+input {
+    width: 70%;
+    margin-left: 2%;
+    border-radius: 10px;
+}
+
+.formButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+button {
+    width: 50%;
+    padding: 1%;
+    background-color: #5D388D;
+    color: white;
+    font-size: 1em;
+    border-radius: 10px;
+    
+}
+
+/* intern */
+
+.addIntern label {
+    width: 10%;
+    display: inline-block;
+}
