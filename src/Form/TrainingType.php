@@ -17,7 +17,9 @@ class TrainingType extends AbstractType
             ->add('libelleTraining', TextType::class, [
                 'label' => 'Formation',
             ])
-            ->add('Valider', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Valider',
+            ])
         ;
     }
 

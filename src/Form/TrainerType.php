@@ -24,7 +24,9 @@ class TrainerType extends AbstractType
             ->add('email', EmailType::class , [
                 'label' => "Email",
             ])
-            ->add('Valider', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => "Valider",
+            ])
         ;
     }
 

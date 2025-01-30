@@ -1,5 +1,5 @@
 /* Intern */
-.blocIntern {
+.blocIntern, .blocTrainer {
     display: flex;
     gap: 15px;
 }
@@ -38,4 +38,14 @@
     background-color: var(--backSection);
     padding: 1%;
     border-radius: 10px;
+}
+
+.listTrainer {
+    width: 30%;
+    background-color: var(--backSection);
+    padding: 1%;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
 }

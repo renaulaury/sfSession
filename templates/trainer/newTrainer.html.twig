@@ -17,10 +17,19 @@
 
     <div class="addTrainer"> 
         {{ form_start(formTrainer)}}
+
+        <div class="formInput">
             {{ form_row(formTrainer.nameTrainer)}}
             {{ form_row(formTrainer.firstname)}}
-            {{ form_row(formTrainer.email)}}
+        </div>
 
+        <div class="formInput">
+            {{ form_row(formTrainer.email)}}
+        </div>
+
+            <div class="formButton">
+                {{ form_widget(formTrainer.submit) }} 
+            </div>
 
         {{ form_end(formTrainer)}}
 
