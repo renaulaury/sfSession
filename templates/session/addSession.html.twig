@@ -14,24 +14,28 @@
     <div class="addSession"> 
         {{ form_start(formSession) }}
             
-            <p>
+        <div class="formInput">
                 {{ form_row(formSession.libelleSession)}}
                 {{ form_row(formSession.nbPlace)}}
-            </p>
+        </div>
 
-            <p>
+        <div class="formInput">
                 {{ form_row(formSession.dateBegin)}}
                 {{ form_row(formSession.dateEnd)}}
-            </p>
+        </div>
 
-            <p>
+        <div class="formInput">
                 {{ form_row(formSession.training)}}
                 {{ form_row(formSession.trainer)}}
-            </p>
+        </div>
 
-            <p>
+        <div class="formInput selectMulti">
                 {{ form_row(formSession.interns)}} 
-            </p>
+        </div>
+
+            <div class="formButton">
+                {{ form_widget(formSession.submit) }} 
+            </div>
 
         {{ form_end(formSession) }}
     </div>

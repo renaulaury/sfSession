@@ -37,43 +37,56 @@
                     </div>
                 </div>
 
-                <div>
+                <div >
                     <h4 class="subTitleSession">Stagiaires inscrits</h4>
-                    {% for intern in session.interns %}
-                        <p>
-                            <a href="{{ path('app_intern') }}">{{ intern.nameIntern }} {{ intern.firstname }}</a>
-                            <a href="{{ path('removeInternToSession', {'session':session.id, 'intern':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
-                        </p>
-                    {% endfor %}
+
+                    <div class="internSession">
+                        {% for intern in session.interns %}
+                            <p>
+                                <a href="{{ path('app_intern') }}">{{ intern.nameIntern }} {{ intern.firstname }}</a>
+                            </p>
+                            <p>
+                                <a href="{{ path('removeInternToSession', {'session':session.id, 'intern':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                            </p>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
 
 
-            <div class="planning">
-                <div class="#">
-                    <h4 class="subTitleSession">Modules non programmés</h4>
-                    {% for noProgrammedModule in noProgrammed %}
-                        <p>
-                            {{ noProgrammedModule.libelleModule }}
+        <div class="planning">
+            <div>
+                <h4 class="subTitleSession">Modules non programmés</h4>
 
-                                <form method="POST" action="{{ path('addModuleToSession', {'session': session.id, 'module': noProgrammedModule.id}) }}">
-                                    <input class="inputJ" type="number" min="1" name="nbDay" placeholder="jours" required>
-                                    <button type="submit">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-                            </form>
-                        </p>
+                <div>
+                    {% for noProgrammedModule in noProgrammed %}
+                        <form class="formSession" method="POST" action="{{ path('addModuleToSession', {'session': session.id, 'module': noProgrammedModule.id}) }}">
+
+                            <p class="libelleModule">
+                                {{ noProgrammedModule.libelleModule }}
+                            </p>
+
+                            <p><input type="number" min="1" name="nbDay" placeholder="jours" required>
+                            </p>
+                            
+                            <button type="submit" class="buttonSessionModule">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </form>
                     {% endfor %}            
                 </div>
+            </div>
         
-                <div class="#">
+                <div>
                     <h4 class="subTitleSession">Stagiaires non inscrits</h4>
 
+                    <div class="internSession">
                     {% if remainingPlaces > 0 %}
                         {% for noRegisteredIntern in noRegistered %}
                         <p>
                             <a href="{{ path('app_intern') }}">{{ noRegisteredIntern.nameIntern }} {{ noRegisteredIntern.firstname }} </a>
-
+                        </p>
+                        <p>
                                 <a href="{{ path('addInternToSession', {'session':session.id, 'intern':noRegisteredIntern.id}) }}"><i class="fa-solid fa-plus"></i></a>       
                         </p>
                         {% endfor %}
@@ -84,7 +97,7 @@
                             </p>
                         {% endfor %}
                     {% endif %}
-                                
+                </div>        
                 </div>
             </div>
         </div>

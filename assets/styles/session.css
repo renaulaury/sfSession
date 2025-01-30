@@ -16,6 +16,7 @@
 
 .thSession {
     color: var(--ftColor);
+    padding-bottom: 10%;
 }
 
 .listingSession {
@@ -45,6 +46,8 @@
     grid-template-rows: auto;
 }
 
-.inputJ {
-    width: 15%;
+.internSession {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
 }

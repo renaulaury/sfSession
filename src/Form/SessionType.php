@@ -49,9 +49,11 @@ class SessionType extends AbstractType
                 'class' => Intern::class,
                 'choice_label' => 'nameIntern',
                 'multiple' => true,
-                'label' => 'Stagiaire',
+                'label' => 'Stagiaires',
             ])
-            ->add('Valider', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Valider'
+            ])
         ;
     }
 

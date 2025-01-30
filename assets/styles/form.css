@@ -14,6 +14,14 @@
     border-radius: 10px;
 }
 
+.selectMulti label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
 input {
     width: 70%;
     margin-left: 2%;
@@ -33,13 +41,30 @@ button {
     background-color: #5D388D;
     color: #e8dafc;
     font-size: 1em;
-    border-radius: 10px;
-    
+    border-radius: 10px;    
 }
 
-/* intern */
+.buttonSessionModule {
+    width: 8%;
+}
 
-.addIntern label {
-    width: 10%;
+
+
+label {
+    width: 20%;
     display: inline-block;
+}
+
+.formSession {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.libelleModule {
+    width: 20%;
+}
+
+.formSession input {
+    padding: 5%;
 }
