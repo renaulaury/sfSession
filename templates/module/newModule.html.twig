@@ -18,12 +18,14 @@
     <div class="addModule"> 
         {{ form_start(formModule)}}
 
-        <div>
+        <div class="formInput">
             {{ form_row(formModule.libelleModule) }}
+      
+            {{ form_row(formModule.category) }}
         </div>
 
-        <div>
-            {{ form_row(formModule.category) }}
+        <div class="formButton">
+            {{ form_widget(formModule.submit) }} 
         </div>
 
         {{ form_end(formModule)}}
