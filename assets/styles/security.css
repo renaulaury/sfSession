@@ -3,6 +3,13 @@
     font-size: 0.7em;
 }
 
+.sectionSecu {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Login */ 
 
 .login {

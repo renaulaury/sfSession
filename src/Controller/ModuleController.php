@@ -56,6 +56,10 @@ final class ModuleController extends AbstractController
      #[Route('/module/{id}/deleteModule', name: 'app_deleteModule')]
      public function deleteModule(Module $module, EntityManagerInterface $entityManager): Response
      {
+        if(!$module) {
+            return $this->redirectToRoute('app_module');
+        }
+
          $entityManager->remove($module);
          $entityManager->flush();
  
