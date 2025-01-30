@@ -20,7 +20,13 @@
 
         {{ form_start(formTraining)}}
             
+        <div class="formInput">
             {{ form_row(formTraining.libelleTraining)}}
+        </div>
+
+        <div class="formButton">
+            {{ form_widget(formTraining.submit) }} 
+        </div>
 
         {{ form_end(formTraining)}}
 

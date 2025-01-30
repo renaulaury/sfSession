@@ -8,8 +8,7 @@ import './bootstrap.js';
 import './styles/app.css';
 import './styles/security.css';
 import './styles/home.css';
-import './styles/internTrainerCatModule.css';
-import './styles/training.css';
+import './styles/internTrainerCatModuleTraining.css';
 import './styles/session.css';
 import './styles/form.css';
 

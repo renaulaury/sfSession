@@ -10,16 +10,19 @@
         <a href="{{ path('add_training') }}"><i class="fa-solid fa-plus"></i></a>
     </div>
 
-    <div class="listTraining"> 
+    <div class="blocTraining"> 
+        <div class="listTraining"> 
 
-        {% for training in trainings %}
-            <p> <a href="{{ path('app_detailTraining', {'id':training.id}) }}">{{ training.libelleTraining}}</a></p>
-
-        
-            <a href="{{ path('edit_training', {'id':training.id}) }}"><i class="fa-solid fa-pencil"></i></a>
-            <a href="{{ path('app_deleteTraining') }}"><i class="fa-solid fa-trash"></i></a>
-        
-        {% endfor %}
+            {% for training in trainings %}
+                <p> <a href="{{ path('app_detailTraining', {'id':training.id}) }}">{{ training.libelleTraining}}</a></p>
+            
+                <p>
+                    <a href="{{ path('edit_training', {'id':training.id}) }}"><i class="fa-solid fa-pencil"></i></a>
+                    <a href="{{ path('app_deleteTraining') }}"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            
+            {% endfor %}
+        </div>
     </div>
 </section>
 
