@@ -12,35 +12,35 @@
 
     <div class="blocIntern">
        
-        <div>
-            <a href="{{ path('edit_intern', {'id':intern.id}) }}"><i class="fa-solid fa-pencil"></i></a>
-        </div>
-
         <div class="infosIntern">
-            <p>{{ intern.nameIntern}} {{ intern.firstname}} </p>
-            <a href="{{ path('app_deleteIntern', {'id':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
-            
-            <p>Affecté(e) à : {{ intern.city}}</p>
             <div>
+                <h4 class="title">
+                    {{ intern.nameIntern}} {{ intern.firstname}} ( {{ intern.sex }} )
+                    <a href="{{ path('app_deleteIntern', {'id':intern.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                </h4>
+                
+            </div>
+
+            <div class="formInput space">
+                <p>Né(e) le : {{ intern.dateBirthFr}}</p>
+                <p>Affecté(e) à : {{ intern.city}}</p>
+            </div>
+            
+            
+
+            <div class="formInput">
                 <p>Email : {{ intern.email}}</p>
                 <p>Téléphone : {{ intern.phone }}</p>
-            </div>
+            </div>            
 
             <div>
-                <p>Sexe : {{ intern.sex }} </p>
-                <p>Né le : {{ intern.dateBirthFr}}</p>
-            </div>
-            
-
-            <div>
-                <h4>Session prévues</h4>
+                <h4 class="title">Session prévues</h4>
                 
                 {% for intern in intern.sessions %}
                     <p>{{ intern.libelleSession }}</p>
                 {% endfor %}
              </div>
-            
-
+        </div>        
     </div>
 </section>
 

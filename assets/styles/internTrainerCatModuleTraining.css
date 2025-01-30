@@ -1,7 +1,6 @@
 /* Intern */
 .blocIntern, .blocTrainer, .blocCat, .blocModule, .blocTraining {
-    display: flex;
-    gap: 15px;
+   gap: 15px;
 }
 
 .listIntern, .listTrainer, .listCat, .listModule, .listTraining {
@@ -22,7 +21,6 @@
 }
 
 
-
 .addIntern, .modifIntern
 .addCat, .modifCat,
 .addModule, .modifModule
@@ -31,6 +29,14 @@
     background-color: var(--backSection);
     padding: 1%;
     border-radius: 10px;
+}
+
+.title {
+    padding: 3% 0;
+}
+
+.space {
+    padding-bottom: 1%;
 }
 
 
