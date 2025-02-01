@@ -33,6 +33,14 @@ final class CategoryController extends AbstractController
 
     public function addEditCat(Category $category = null, Request $request, EntityManagerInterface $entityManager): Response
     {
+        //ajout
+        //request recup get et post - recup id dans url avec attributes
+        if($request->attributes->get('id') && (!$category)) {
+            return $this->redirectToRoute('app_category');
+        }
+
+        //edition
+
         if(!$category) {
             $category = new Category();
             return $this->redirectToRoute('app_category');

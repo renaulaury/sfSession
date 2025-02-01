@@ -41,10 +41,15 @@ final class TrainerController extends AbstractController
     #[Route('/trainer/{id}/newTrainer', name: 'edit_trainer')]
     public function addEditTrainer(Trainer $trainer = null, Request $request, EntityManagerInterface $entityManager): Response
     {
+        //ajout
+        //request recup get et post - recup id dans url avec attributes
+        if($request->attributes->get('id') && (!$trainer)) {
+            return $this->redirectToRoute('app_trainer');
+        }
 
+        //edition
         if(!$trainer) {
             $trainer = new Trainer();
-            return $this->redirectToRoute('app_trainer');
         }
 
         $form = $this->createForm(TrainerType::class, $trainer);

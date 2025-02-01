@@ -30,9 +30,15 @@ final class ModuleController extends AbstractController
 
     public function addEditModule(Module $module = null, Request $request, EntityManagerInterface $entityManager): Response
     {
+        //ajout
+        //request recup get et post - recup id dans url avec attributes
+        if($request->attributes->get('id') && (!$module)) {
+            return $this->redirectToRoute('app_module');
+        }
+
+        //edition
         if(!$module) {
             $module = new Module();
-            return $this->redirectToRoute('app_module');
         }
 
 

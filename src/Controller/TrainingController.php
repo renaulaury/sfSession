@@ -46,6 +46,13 @@ final class TrainingController extends AbstractController
 
     public function addTraining(Training $training = null, Request $request, EntityManagerInterface $entityManager): Response
     {
+        //ajout
+        //request recup get et post - recup id dans url avec attributes
+        if($request->attributes->get('id') && (!$training)) {
+            return $this->redirectToRoute('app_training');
+        }
+
+        //edition
         if(!$training) {
             $training = new Training();
             return $this->redirectToRoute('app_training');
