@@ -2,10 +2,21 @@
 
  @media (max-width: 1024px) {
 /********* form **********/
-    .button {
-        width: 100% !important;
+    #intern_submit, #module_submit, #trainer_submit, #training_submit, #category_submit, #session_submit {
+        width: 100%;
+    }
+
+    .formInput {
+        grid-template-columns: auto;
+    }
+
+    /********* Session **********/
+    .blockPlanning {
+        flex-direction: column;
     }
  } 
+
+
 
 @media (max-width: 800px) {
     /* Burger */
@@ -59,8 +70,5 @@
         margin-bottom: 2%;
         width: 100%;
     }
-
-    
-    
 
 }
