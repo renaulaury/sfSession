@@ -28,7 +28,7 @@ final class CategoryController extends AbstractController
     }
 
     // Affiche le formulaire d'ajout et d'édition
-    #[Route('/intern/newCat', name: 'add_cat')]
+    #[Route('/category/newCat', name: 'add_cat')]
     #[Route('/category/{id}/newCat', name: 'edit_cat')]
 
     public function addEditCat(Category $category = null, Request $request, EntityManagerInterface $entityManager): Response
@@ -43,7 +43,6 @@ final class CategoryController extends AbstractController
 
         if(!$category) {
             $category = new Category();
-            return $this->redirectToRoute('app_category');
         }
 
 

@@ -21,11 +21,7 @@
 }
 
 
-.addIntern, .modifIntern
-.addCat, .modifCat,
-.addModule, .modifModule
-.addTrainer, .modifTrainer,
-.addTraining, .modifTraining {
+.addIntern, .modifIntern, .addCat, .modifCat, .addModule, .modifModule, .addTrainer, .modifTrainer, .addTraining, .modifTraining {
     background-color: var(--backSection);
     padding: 1%;
     border-radius: 10px;

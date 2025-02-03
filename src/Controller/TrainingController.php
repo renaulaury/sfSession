@@ -55,7 +55,6 @@ final class TrainingController extends AbstractController
         //edition
         if(!$training) {
             $training = new Training();
-            return $this->redirectToRoute('app_training');
         }
 
         $form = $this->createForm(TrainingType::class, $training);
