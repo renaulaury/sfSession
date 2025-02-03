@@ -39,9 +39,16 @@ section {
 }
 
 /* Navbar */
+/*Burger*/
+.burger_button {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
 #navbar {
     position:fixed; 
-    top:0;
+    /* top:0; */
     width: 100%;
     background-color: var(--backSection);
     padding: 1% 5%;

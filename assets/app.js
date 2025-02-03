@@ -11,5 +11,6 @@ import './styles/home.css';
 import './styles/internTrainerCatModuleTraining.css';
 import './styles/session.css';
 import './styles/form.css';
+import './styles/media.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
