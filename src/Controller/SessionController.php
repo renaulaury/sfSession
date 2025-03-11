@@ -57,7 +57,7 @@ final class SessionController extends AbstractController
 
     //Affiche le détail de la session
     #[Route('/session/detailSession/{id}', name: 'app_detailSession')]
-    public function detailSession(Session $session = null, SessionRepository $sessionRepo, ProgramRepository $programRepo): Response
+    public function detailSession(?Session $session, SessionRepository $sessionRepo, ProgramRepository $programRepo): Response
     {       
 
         if(!$session) {
