@@ -45,7 +45,7 @@ final class InternController extends AbstractController
     #[Route('/intern/newIntern', name: 'add_intern')]
     #[Route('/intern/{id}/newIntern', name: 'edit_intern')]
 
-    public function addEditIntern(Intern $intern = null, Request $request, EntityManagerInterface $entityManager): Response
+    public function addEditIntern(?Intern $intern, Request $request, EntityManagerInterface $entityManager): Response
     {
         //ajout
         //request recup get et post - recup id dans url avec attributes

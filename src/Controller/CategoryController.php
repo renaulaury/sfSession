@@ -31,7 +31,7 @@ final class CategoryController extends AbstractController
     #[Route('/category/newCat', name: 'add_cat')]
     #[Route('/category/{id}/newCat', name: 'edit_cat')]
 
-    public function addEditCat(Category $category = null, Request $request, EntityManagerInterface $entityManager): Response
+    public function addEditCat(?Category $category, Request $request, EntityManagerInterface $entityManager): Response
     {
         //ajout
         //request recup get et post - recup id dans url avec attributes
