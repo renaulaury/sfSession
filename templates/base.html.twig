@@ -15,8 +15,7 @@
         {% endblock %}
     </head>
 
-    <body>
-        {# {% if app.user %} #}
+    
             <nav id="navbar">
                 <div id="welcome">
                     <p>Bienvenue <a href="{{ path('app_profile') }}">toi !</a></p>
@@ -39,9 +38,9 @@
                     <div class="line"></div>
                 </div>
             </nav>
-        {# {% endif %} #}
+        
 
 
         {% block body %}{% endblock %}
-    </body>
+   
 </html>
